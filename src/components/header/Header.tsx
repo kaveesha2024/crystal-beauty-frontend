@@ -4,6 +4,7 @@ import {
   ShoppingCartIcon,
   HeartIcon,
   SearchIcon,
+  User,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 export const Header: React.FC = () => {
@@ -50,6 +51,9 @@ export const Header: React.FC = () => {
               </div>
             </div>
             <div className="flex items-center space-x-4">
+              <button className="relative cursor-pointer p-2 hover:text-[#D50B8B] transition-colors">
+                <User size={24} />
+              </button>
               <button className="relative cursor-pointer p-2 hover:text-[#D50B8B] transition-colors">
                 <HeartIcon size={24} />
                 <span className="absolute -top-1 -right-1 bg-[#D50B8B] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
