@@ -8,7 +8,15 @@ import {
   EyeOffIcon,
   NavigationIcon,
 } from "lucide-react";
-export const SignupForm: React.FC = () => {
+export interface SignupFormProps {
+  handleSignupInputFields: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  // (event: React.FormEvent<HTMLFormElement>)
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+}
+export const SignupForm: React.FC<SignupFormProps> = ({
+  handleSignupInputFields,
+  handleSubmit,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   return (
@@ -20,7 +28,7 @@ export const SignupForm: React.FC = () => {
           </h1>
           <p className="text-gray-600">Join Cristal Beauty Clear today</p>
         </div>
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label
@@ -34,6 +42,7 @@ export const SignupForm: React.FC = () => {
                   type="text"
                   id="firstName"
                   name="firstName"
+                  onChange={handleSignupInputFields}
                   className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D50B8B] focus:border-transparent"
                   placeholder="John"
                   required
@@ -53,6 +62,7 @@ export const SignupForm: React.FC = () => {
                   type="text"
                   id="lastName"
                   name="lastName"
+                  onChange={handleSignupInputFields}
                   className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D50B8B] focus:border-transparent"
                   placeholder="Doe"
                   required
@@ -73,6 +83,7 @@ export const SignupForm: React.FC = () => {
                 type="email"
                 id="email"
                 name="email"
+                onChange={handleSignupInputFields}
                 className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D50B8B] focus:border-transparent"
                 placeholder="you@example.com"
                 required
@@ -91,6 +102,8 @@ export const SignupForm: React.FC = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
+                name="password"
+                onChange={handleSignupInputFields}
                 className="w-full pl-10 pr-12 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D50B8B] focus:border-transparent"
                 placeholder="••••••••"
                 required
@@ -120,6 +133,8 @@ export const SignupForm: React.FC = () => {
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 id="confirmPassword"
+                name="confirmPassword"
+                onChange={handleSignupInputFields}
                 className="w-full pl-10 pr-12 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D50B8B] focus:border-transparent"
                 placeholder="••••••••"
                 required
@@ -153,6 +168,7 @@ export const SignupForm: React.FC = () => {
                 type="text"
                 id="phoneNumber"
                 name="phoneNumber"
+                onChange={handleSignupInputFields}
                 className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D50B8B] focus:border-transparent"
                 placeholder="0771234567"
                 required
@@ -176,6 +192,7 @@ export const SignupForm: React.FC = () => {
                 type="text"
                 id="address"
                 name="address"
+                onChange={handleSignupInputFields}
                 className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D50B8B] focus:border-transparent"
                 placeholder="No 02, Colombo, Sri Lanka"
                 required
