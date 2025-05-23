@@ -9,5 +9,6 @@
 }
 body {
     background-color: var(--color-primary);
+    font-family: var(--font-fancy);
     color: var(--color-secondary);
 }
