@@ -4,6 +4,8 @@ import App from "../../App.tsx";
 import Signup from "../../components/pages/auth/signup/Signup.tsx";
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
+// import { Footer } from "../../components/footer/Footer.tsx";
+import { Header } from "../../components/header/Header.tsx";
 
 axios.defaults.baseURL = "http://localhost:8000";
 axios.interceptors.request.use(
@@ -23,6 +25,7 @@ const AppRoutes: React.FC = () => {
   return (
     <div>
       <Toaster />
+      <Header />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/signup" element={<Signup />} />

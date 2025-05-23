@@ -1,7 +1,12 @@
 import React from "react";
+import { Hero } from "./components/hero/Hero.tsx";
 
 const App: React.FC = () => {
-  return <div className="">Every one has the </div>;
+  return (
+    <div className="">
+      <Hero />
+    </div>
+  );
 };
 
 export default App;

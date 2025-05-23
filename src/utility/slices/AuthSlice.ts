@@ -1,20 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import signupApi from "../apiCalls/SignupApi.ts";
 import toast from "react-hot-toast";
-interface IAuthSliceInitialStateTypes {
-  token: string;
-  firstName: string;
-  lastName: string;
-  isLoading: boolean;
-  isAuthenticated: boolean;
-  email: string;
-  phoneNumber: string;
-  address: string;
-  profilePicture: string;
-  role: string;
-  errState: string;
-  isVerified: boolean;
-}
+import type { IAuthSliceInitialStateTypes } from "../types/slices/authSlice";
 const initialState: IAuthSliceInitialStateTypes = {
   isLoading: false,
   isAuthenticated: false,
@@ -27,7 +14,6 @@ const initialState: IAuthSliceInitialStateTypes = {
   address: "",
   profilePicture: "",
   role: "",
-  errState: "",
 };
 const authenticationSlice = createSlice({
   name: "auth",
@@ -57,7 +43,7 @@ const authenticationSlice = createSlice({
           toast.success("Your CBC account created successfully");
           return;
         }
-        state.errState = payload.message;
+        toast.error(payload.message);
       },
     );
     builder.addCase(

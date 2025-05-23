@@ -5,23 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import signupApi from "../../../../utility/apiCalls/SignupApi.ts";
 import type { dispatchType, RootState } from "../../../../../store.ts";
 import { useNavigate } from "react-router-dom";
-export interface ISignupInputDetailsTypes {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  phoneNumber: string;
-  address: string;
-}
-export interface ISignupRequestTypes {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  address: string;
-  phoneNumber: string;
-}
+import type {
+  ISignupInputDetailsTypes,
+  ISignupRequestTypes,
+} from "../../../../utility/types/signup";
+
 const Signup: React.FC = () => {
   const navigate = useNavigate();
   const { isAuthenticated, role } = useSelector(
