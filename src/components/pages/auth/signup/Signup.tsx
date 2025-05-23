@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SignupForm } from "./SignupForm.tsx";
-import axios from "axios";
 import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import signupApi from "../../../../utility/apiCalls/SignupApi.ts";
+import type { dispatchType, RootState } from "../../../../../store.ts";
 import { useNavigate } from "react-router-dom";
 export interface ISignupInputDetailsTypes {
   firstName: string;
@@ -12,8 +14,28 @@ export interface ISignupInputDetailsTypes {
   phoneNumber: string;
   address: string;
 }
+export interface ISignupRequestTypes {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  address: string;
+  phoneNumber: string;
+}
 const Signup: React.FC = () => {
   const navigate = useNavigate();
+  const { isAuthenticated, role } = useSelector(
+    (state: RootState) => state.authentication,
+  );
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (role === "admin") {
+        navigate("/admin");
+      }
+      navigate("/");
+    }
+  }, [isAuthenticated]);
+  const dispatch = useDispatch<dispatchType>();
   const [signupInputDetails, setSignupInputDetails] =
     useState<ISignupInputDetailsTypes>({
       firstName: "",
@@ -52,7 +74,7 @@ const Signup: React.FC = () => {
       toast.error("Passwords are not matching");
       return;
     }
-    const request = {
+    const request: ISignupRequestTypes = {
       firstName: signupInputDetails.firstName,
       lastName: signupInputDetails.lastName,
       email: signupInputDetails.email,
@@ -60,17 +82,7 @@ const Signup: React.FC = () => {
       phoneNumber: signupInputDetails.phoneNumber,
       address: signupInputDetails.address,
     };
-    try {
-      const response = await axios.post("/api/signup", request);
-      if (response.data.status === 200) {
-        navigate("/");
-        toast.success("Signup successful");
-        return;
-      }
-      toast.error(response.data.message);
-    } catch (error) {
-      toast.error("Something went wrong");
-    }
+    dispatch(signupApi(request));
   };
   return (
     <SignupForm

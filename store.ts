@@ -21,4 +21,7 @@ export const store = configureStore({
       serializableCheck: false,
     }),
 });
+export type dispatchType = typeof store.dispatch;
+export type RootState = ReturnType<typeof rootReducer>;
+// type RootState = ReturnType<typeof store.getState>;
 export const persistor = persistStore(store);
