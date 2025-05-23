@@ -1,7 +1,7 @@
 import React from "react";
 
 const App: React.FC = () => {
-  return <div>test </div>;
+  return <div className="">Every one has the </div>;
 };
 
 export default App;
