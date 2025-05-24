@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import type {
   ISignupInputDetailsTypes,
   ISignupRequestTypes,
-} from "../../../../utility/types/signup";
+} from "../../../../utility/types/signup/signup";
 
 const Signup: React.FC = () => {
   const navigate = useNavigate();

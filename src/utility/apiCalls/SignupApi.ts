@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
-import type { ISignupRequestTypes } from "../types/signup";
+import type { ISignupRequestTypes } from "../types/signup/signup";
 
 const signupApi = createAsyncThunk(
   "user/signup",

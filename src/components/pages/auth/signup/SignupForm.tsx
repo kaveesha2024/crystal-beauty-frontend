@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 export interface SignupFormProps {
   handleSignupInputFields: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  // (event: React.FormEvent<HTMLFormElement>)
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 export const SignupForm: React.FC<SignupFormProps> = ({
