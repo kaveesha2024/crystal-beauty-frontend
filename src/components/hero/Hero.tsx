@@ -13,7 +13,7 @@ export const Hero: React.FC = () => {
       />
       <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
         <div className="max-w-2xl">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1e1e19] mb-6">
+          <h1 className="text-4xl font-sans md:text-5xl lg:text-6xl font-bold text-[#1e1e19] mb-6">
             Discover Your Natural Beauty
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-8">

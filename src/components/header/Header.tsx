@@ -7,8 +7,11 @@ import {
   User,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../store.ts";
 export const Header: React.FC = () => {
   const navigate = useNavigate();
+  const state = useSelector((state: RootState) => state.authentication);
   return (
     <header className="w-full">
       <div className="bg-[#1e1e19] text-[#FFEDFA] py-2">
@@ -51,7 +54,18 @@ export const Header: React.FC = () => {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <button className="relative cursor-pointer p-2 hover:text-[#D50B8B] transition-colors">
+              <button
+                onClick={() => {
+                  if (state.isAuthenticated && state.role === "user") {
+                    navigate("/profile");
+                  } else if (state.isAuthenticated && state.role === "admin") {
+                    navigate("/dashboard");
+                  } else {
+                    navigate("/signup");
+                  }
+                }}
+                className="relative cursor-pointer p-2 hover:text-[#D50B8B] transition-colors"
+              >
                 <User size={24} />
               </button>
               <button className="relative cursor-pointer p-2 hover:text-[#D50B8B] transition-colors">
