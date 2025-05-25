@@ -7,10 +7,9 @@ const SignInApi = createAsyncThunk(
     "user/signIn",
     async (signInInputDetails: ISignInInputDetailsTypes) => {
         const aToast = toast.loading("Signing in...");
-        const response =  await axios.post("/api/signin", signInInputDetails);
+        const response = await axios.post("/api/signin", signInInputDetails);
         toast.dismiss(aToast);
         if (response.data.status === 200) {
-            console.log(response.data);
             return response.data;
         }
         toast.error(response.data.message);

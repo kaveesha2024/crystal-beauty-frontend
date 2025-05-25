@@ -5,15 +5,15 @@ import type { RootState } from "../store.ts";
 import toast from "react-hot-toast";
 
 const App: React.FC = () => {
-  const authState = useSelector((state: RootState) => state.authentication);
-  if (authState.isAuthenticated && !authState.isVerified) {
-    toast.error("You haven't verified your email address yet.");
-  }
-  return (
-    <div>
-      <Hero />
-    </div>
-  );
+    const authState = useSelector((state: RootState) => state.authentication);
+    if (authState.isAuthenticated && !authState.isVerified) {
+        toast.error("You haven't verified your email address yet.");
+    }
+    return (
+        <div>
+            <Hero />
+        </div>
+    );
 };
 
 export default App;

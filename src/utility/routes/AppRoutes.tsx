@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import App from "../../App.tsx";
 import Signup from "../../components/pages/auth/signup/Signup.tsx";
 import axios from "axios";
@@ -7,35 +7,52 @@ import { Toaster } from "react-hot-toast";
 // import { Footer } from "../../components/footer/Footer.tsx";
 import { Header } from "../../components/header/Header.tsx";
 import SignIn from "../../components/pages/auth/signin/SignIn.tsx";
+import NavBar from "../../components/navBar/NavBar.tsx";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../store.ts";
+import Dashboard from "../../components/pages/dashboard/Dashboard.tsx";
 
 axios.defaults.baseURL = "http://localhost:8000";
 axios.interceptors.request.use(
-  function (config) {
-    let token = localStorage.getItem("token");
-    if (!token) {
-      token = "";
+    function (config) {
+        let token = localStorage.getItem("token");
+        if (!token) {
+            token = "";
+        }
+        config.headers.Authorization = `Bearer ${token}`;
+        return config;
+    },
+    function (error) {
+        return Promise.reject(error);
     }
-    config.headers.Authorization = `Bearer ${token}`;
-    return config;
-  },
-  function (error) {
-    return Promise.reject(error);
-  },
 );
 const AppRoutes: React.FC = () => {
-  return (
-    <div>
-      <Toaster />
-      <Header />
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/*" element={<div>404 Not Found</div>} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/signin" element={<SignIn />} />
-      </Routes>
-      {/*<Footer />*/}
-    </div>
-  );
+    const { role } = useSelector((state: RootState) => state.authentication);
+    return (
+        <div>
+            <Toaster />
+            <Header />
+            <NavBar />
+            <Routes>
+                <Route path="/" element={<App />} />
+                <Route
+                    path="/*"
+                    element={
+                        <div className="flex h-screen w-full items-center justify-center">
+                            <p>404</p>
+                        </div>
+                    }
+                />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/signin" element={<SignIn />} />
+                <Route
+                    path="/dashboard/*"
+                    element={role === "admin" ? <Dashboard /> : <Navigate to="/" />}
+                />
+            </Routes>
+            {/*<Footer />*/}
+        </div>
+    );
 };
 
 export default AppRoutes;
