@@ -19,7 +19,7 @@ export const Header: React.FC = () => {
           <div className="flex justify-center md:justify-end items-center text-sm">
             <div className="flex items-center">
               <PhoneIcon size={14} className="mr-2 text-[#D50B8B]" />
-              <span>Customer Service: +1 (800) 123-4567</span>
+              <span>Customer Service: 074 085 9676</span>
             </div>
           </div>
         </div>
