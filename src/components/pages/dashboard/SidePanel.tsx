@@ -1,8 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Gauge, LogOut, Package, ShoppingBag, UserRound } from "lucide-react";
-
+import { useDispatch } from "react-redux";
+import type { dispatchType } from "../../../../store.ts";
+import { signOut } from "../../../utility/slices/AuthSlice.ts";
+import Swal from "sweetalert2";
 const SidePanel: React.FC = () => {
+    const dispatch = useDispatch<dispatchType>();
+    const navigate = useNavigate();
     return (
         <div className="sticky top-0 flex h-[100vh] w-[250px] flex-col items-center justify-between">
             <div className="flex h-[200px] w-full flex-col gap-2 pr-5">
@@ -37,7 +42,25 @@ const SidePanel: React.FC = () => {
                 </Link>
             </div>
             <div className="mb-5 flex w-full flex-col gap-2 pr-5">
-                <button className="active:text-accent hover:text-accent flex cursor-pointer items-center gap-1 p-3 transition duration-100 hover:scale-95">
+                <button
+                    onClick={() => {
+                        Swal.fire({
+                            title: "Are you sure?",
+                            text: "Do you want to sign out of your account?",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Sign Out",
+                        }).then(result => {
+                            if (result.isConfirmed) {
+                                dispatch(signOut());
+                                navigate("/");
+                            }
+                        });
+                    }}
+                    className="active:text-accent hover:text-accent flex cursor-pointer items-center gap-1 p-3 transition duration-100 hover:scale-95"
+                >
                     <LogOut />
                     Sign Out
                 </button>
