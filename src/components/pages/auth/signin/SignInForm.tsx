@@ -2,7 +2,11 @@ import {EyeIcon, EyeOffIcon, LockIcon, MailIcon} from "lucide-react";
 import React, { useState } from "react";
 import {Link} from "react-router-dom";
 
-const SignInForm: React.FC = () => {
+interface SignInFormProps {
+    handleSignInInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleSignInSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+}
+const SignInForm: React.FC <SignInFormProps> = ({ handleSignInInput, handleSignInSubmit }) => {
     const [showPassword, setShowPassword] = useState(false);
     return (
         <div className="w-full min-h-screen bg-[#FFEDFA] flex items-center justify-center px-4 py-12">
@@ -13,7 +17,7 @@ const SignInForm: React.FC = () => {
                     </h1>
                     <p className="text-gray-600">Welcome back to CBC</p>
                 </div>
-                <form className="space-y-4">
+                <form onSubmit={ handleSignInSubmit } className="space-y-4">
 
                     <div>
                         <label
@@ -27,7 +31,7 @@ const SignInForm: React.FC = () => {
                                 type="email"
                                 id="email"
                                 name="email"
-                                // onChange={}
+                                onChange={ handleSignInInput }
                                 className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D50B8B] focus:border-transparent"
                                 placeholder="you@example.com"
                                 required
@@ -47,7 +51,7 @@ const SignInForm: React.FC = () => {
                                 type={showPassword ? "text" : "password"}
                                 id="password"
                                 name="password"
-                                // onChange={}
+                                onChange={ handleSignInInput }
                                 className="w-full pl-10 pr-12 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D50B8B] focus:border-transparent"
                                 placeholder="••••••••"
                                 required
