@@ -1,7 +1,8 @@
 import React from "react";
 import { Delete, UserPen } from "lucide-react";
-
-const UsersTable: React.FC = () => {
+import type { IUsersTableProps } from "../../../utility/types/getAllUsers/getAllUsers";
+const UsersTable: React.FC<IUsersTableProps> = ({ allUsers }) => {
+    console.log(allUsers);
     return (
         <div className="relative overflow-x-auto">
             <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">

@@ -9,14 +9,14 @@ import { Header } from "../../components/header/Header.tsx";
 import SignIn from "../../components/pages/auth/signin/SignIn.tsx";
 import NavBar from "../../components/navBar/NavBar.tsx";
 import { useSelector } from "react-redux";
-import type { RootState } from "../../../store.ts";
+import { type RootState, store } from "../../../store.ts";
 import Dashboard from "../../components/pages/dashboard/Dashboard.tsx";
 
 axios.defaults.baseURL = "http://localhost:8000";
 axios.interceptors.request.use(
     function (config) {
-        let token = localStorage.getItem("token");
-        if (!token) {
+        let token = store.getState().authentication.token;
+        if (!token || token === "") {
             return config;
         }
         config.headers.Authorization = `Bearer ${token}`;
