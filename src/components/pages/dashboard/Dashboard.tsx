@@ -3,18 +3,18 @@ import SidePanel from "./SidePanel.tsx";
 import { Route, Routes } from "react-router-dom";
 import Analytics from "./Analytics.tsx";
 import Products from "./Products.tsx";
+import Users from "./Users.tsx";
 
 const Dashboard: React.FC = () => {
     return (
-        <div className="flex px-5">
+        <div className="flex">
             <SidePanel />
-            <div className="w-full bg-red-900">
-                <p className="bg-green-300">
-                    <Routes>
-                        <Route path="/" element={<Analytics />} />
-                        <Route path="/products" element={<Products />} />
-                    </Routes>
-                </p>
+            <div className="w-full">
+                <Routes>
+                    <Route path="/" element={<Analytics />} />
+                    <Route path="/products" element={<Products />} />
+                    <Route path="/users" element={<Users />} />
+                </Routes>
             </div>
         </div>
     );

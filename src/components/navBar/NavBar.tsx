@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const NavBar: React.FC = () => {
     return (
-        <div className="flex h-[40px] w-full items-center justify-center gap-5 bg-white font-bold hover:bg-[#FFEDFA]/90">
+        <div className="flex h-[40px] w-full items-center justify-center gap-5 font-bold hover:bg-[#FFEDFA]/90">
             <Link className="hover:text-accent" to="/">
                 Home
             </Link>

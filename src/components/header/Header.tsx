@@ -19,7 +19,7 @@ export const Header: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-white shadow-sm">
+            <div>
                 <div className="container mx-auto px-4 py-4">
                     <div className="flex items-center justify-between">
                         <div

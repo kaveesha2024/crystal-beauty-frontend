@@ -9,7 +9,7 @@ const SidePanel: React.FC = () => {
     const dispatch = useDispatch<dispatchType>();
     const navigate = useNavigate();
     return (
-        <div className="sticky top-0 flex h-[100vh] w-[250px] flex-col items-center justify-between">
+        <div className="sticky top-0 flex h-[100vh] w-[250px] flex-col items-center justify-between px-5">
             <div className="flex h-[200px] w-full flex-col gap-2 pr-5">
                 <h2 className="mb-5 pt-5 text-center text-3xl font-bold">Welcome Admin</h2>
                 <Link
@@ -21,7 +21,7 @@ const SidePanel: React.FC = () => {
                 </Link>
                 <Link
                     className="active:text-accent hover:text-accent flex items-center gap-1 p-3 transition duration-100 hover:scale-95"
-                    to="/"
+                    to="users"
                 >
                     <UserRound />
                     Users

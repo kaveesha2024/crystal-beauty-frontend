@@ -17,7 +17,7 @@ axios.interceptors.request.use(
     function (config) {
         let token = localStorage.getItem("token");
         if (!token) {
-            token = "";
+            return config;
         }
         config.headers.Authorization = `Bearer ${token}`;
         return config;
