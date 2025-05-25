@@ -18,7 +18,7 @@ const Users: React.FC = () => {
         }
     };
     return (
-        <div className="h-screen w-full px-5 pt-5">
+        <div className="h-screen w-full overflow-hidden px-5 pt-5">
             <UsersTable allUsers={allUsers} />
         </div>
     );
