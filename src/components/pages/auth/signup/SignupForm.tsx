@@ -8,6 +8,7 @@ import {
   EyeOffIcon,
   NavigationIcon,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 export interface SignupFormProps {
   handleSignupInputFields: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -208,10 +209,10 @@ export const SignupForm: React.FC<SignupFormProps> = ({
           </button>
         </form>
         <p className="mt-6 text-center text-sm text-gray-600">
-          Already have an account?{" "}
-          <a href="#" className="text-[#D50B8B] hover:underline font-medium">
+          Already have an account?
+          <Link to="/signin" className="text-[#D50B8B] hover:underline font-medium">
             Sign in
-          </a>
+          </Link>
         </p>
       </div>
     </div>
