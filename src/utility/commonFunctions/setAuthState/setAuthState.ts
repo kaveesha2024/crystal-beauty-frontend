@@ -1,4 +1,7 @@
-import type { IAuthSliceInitialStateTypes, IAuthSlicePayloadTypes } from "../../types/slices/authSlice";
+import type {
+    IAuthSliceInitialStateTypes,
+    IAuthSlicePayloadTypes,
+} from "../../types/slices/authSlice";
 
 const setUserState = (state: IAuthSliceInitialStateTypes, payload: IAuthSlicePayloadTypes) => {
     state.token = payload.token;
@@ -11,5 +14,6 @@ const setUserState = (state: IAuthSliceInitialStateTypes, payload: IAuthSlicePay
     state.address = payload.user?.address || "";
     state.profilePicture = payload.user?.profilePicture || "";
     state.role = payload.user?.role || "";
+    state.isBlocked = payload.user?.isBlocked || false;
 };
 export default setUserState;

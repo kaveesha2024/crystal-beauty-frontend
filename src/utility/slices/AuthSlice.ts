@@ -17,6 +17,7 @@ const initialState: IAuthSliceInitialStateTypes = {
     address: "",
     profilePicture: "",
     role: "",
+    isBlocked: false,
 };
 
 const authenticationSlice = createSlice({

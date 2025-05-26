@@ -6,9 +6,11 @@ import type {
 } from "../../../utility/types/getAllUsers/getAllUsers";
 import TableHeader from "../../../utility/reUsable/TableHeader.tsx";
 import { userTableHeaders } from "../../../utility/others/refactor.ts";
+import { useNavigate } from "react-router-dom";
 const UsersTable: React.FC<IUsersTableProps> = ({ allUsers }) => {
+    const navigate = useNavigate();
     return (
-        <div className="relative overflow-x-auto">
+        <div className="relative">
             <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
                 <thead className="bg-gray-50 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -50,7 +52,16 @@ const UsersTable: React.FC<IUsersTableProps> = ({ allUsers }) => {
                                         <td className="px-6 py-4 text-green-400">active</td>
                                     )}
                                     <td className="flex gap-2 px-6 py-4">
-                                        <button className="hover:text-accent cursor-pointer text-blue-600 transition duration-100 hover:scale-95 active:text-black">
+                                        <button
+                                            onClick={() => {
+                                                navigate(`update/${user.userId}`, {
+                                                    state: {
+                                                        user,
+                                                    },
+                                                });
+                                            }}
+                                            className="hover:text-accent cursor-pointer text-blue-600 transition duration-100 hover:scale-95 active:text-black"
+                                        >
                                             <UserPen />
                                         </button>
                                         <button className="hover:text-accent cursor-pointer text-red-600 transition duration-100 hover:scale-95 active:text-black">
