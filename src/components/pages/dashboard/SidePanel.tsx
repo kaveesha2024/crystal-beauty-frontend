@@ -21,21 +21,21 @@ const SidePanel: React.FC = () => {
                 </Link>
                 <Link
                     className="active:text-accent hover:text-accent flex items-center gap-1 p-3 transition duration-100 hover:scale-95"
-                    to="users"
+                    to="/dashboard/users"
                 >
                     <UserRound />
                     Users
                 </Link>
                 <Link
                     className="active:text-accent hover:text-accent flex items-center gap-1 p-3 transition duration-100 hover:scale-95"
-                    to="products"
+                    to="/dashboard/roducts"
                 >
                     <Package />
                     Products
                 </Link>
                 <Link
                     className="active:text-accent hover:text-accent flex items-center gap-1 p-3 transition duration-100 hover:scale-95"
-                    to="/dashboard"
+                    to="/dashboard/orders"
                 >
                     <ShoppingBag />
                     Orders
