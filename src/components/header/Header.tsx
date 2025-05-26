@@ -33,7 +33,7 @@ export const Header: React.FC = () => {
                             </div>
                             <div className="hidden md:block">
                                 <h1 className="text-xl font-bold text-[#1e1e19]">
-                                    Cristal Beauty Clear
+                                    Crystal Beauty Clear
                                 </h1>
                                 <p className="text-sm text-gray-500">Beauty in Clarity</p>
                             </div>
