@@ -44,7 +44,13 @@ const UsersTable: React.FC<IUsersTableProps> = ({ allUsers }) => {
                                     <td className="px-6 py-4">{user.phoneNumber}</td>
                                     <td className="px-6 py-4">{user.address}</td>
                                     <td className="px-6 py-4">
-                                        <img src={user.profilePicture} alt="image" />
+                                        <img
+                                            className={
+                                                "h-[50px] w-[50px] rounded-full object-cover"
+                                            }
+                                            src={user.profilePicture}
+                                            alt="image"
+                                        />
                                     </td>
                                     {user.isBlocked ? (
                                         <td className="px-6 py-4 text-red-500">Blocked</td>

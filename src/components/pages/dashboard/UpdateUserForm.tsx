@@ -196,7 +196,7 @@ const UpdateUserForm: React.FC<UpdateUserFormPropTypes> = ({
                 <button
                     type="button"
                     onClick={() => handleUserUpdateFormSubmit(image)}
-                    className="mt-6 w-full rounded-lg px-6 py-2 font-semibold text-white transition hover:brightness-110 md:w-auto"
+                    className="mt-6 w-full cursor-pointer rounded-lg px-6 py-2 font-semibold text-white transition hover:brightness-110 md:w-auto"
                     style={{ backgroundColor: "#D50B8B" }}
                 >
                     Save Changes
