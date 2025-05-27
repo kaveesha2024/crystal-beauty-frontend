@@ -7,7 +7,7 @@ import type {
 import TableHeader from "../../../utility/reUsable/TableHeader.tsx";
 import { userTableHeaders } from "../../../utility/others/refactor.ts";
 import { useNavigate } from "react-router-dom";
-const UsersTable: React.FC<IUsersTableProps> = ({ allUsers }) => {
+const UsersTable: React.FC<IUsersTableProps> = ({ allUsers, handleDeleteUser }) => {
     const navigate = useNavigate();
     return (
         <div className="relative">
@@ -70,7 +70,10 @@ const UsersTable: React.FC<IUsersTableProps> = ({ allUsers }) => {
                                         >
                                             <UserPen />
                                         </button>
-                                        <button className="hover:text-accent cursor-pointer text-red-600 transition duration-100 hover:scale-95 active:text-black">
+                                        <button
+                                            onClick={() => handleDeleteUser(user.userId)}
+                                            className="hover:text-accent cursor-pointer text-red-600 transition duration-100 hover:scale-95 active:text-black"
+                                        >
                                             <Delete />
                                         </button>
                                     </td>

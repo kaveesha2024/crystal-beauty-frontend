@@ -17,4 +17,5 @@ export interface IGetAllUsersResponseTypes {
 }
 export interface IUsersTableProps {
     allUsers: IGetAllUsersResponseTypes[];
+    handleDeleteUser: (id: string) => void;
 }
