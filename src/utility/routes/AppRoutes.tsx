@@ -51,7 +51,7 @@ const AppRoutes: React.FC = () => {
                     element={role === "admin" ? <Dashboard /> : <Navigate to="/" />}
                 />
                 <Route
-                    path={"/profile/:userId"}
+                    path={"/profile/:userId/*"}
                     element={isAuthenticated ? <Profile /> : <Navigate to="/signin" />}
                 />
             </Routes>

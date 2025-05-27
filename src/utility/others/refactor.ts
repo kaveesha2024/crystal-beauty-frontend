@@ -11,3 +11,32 @@ export const userTableHeaders = [
     "Status (Block / Unblock)",
     "Action",
 ];
+export const formFields = [
+    {
+        label: "First Name",
+        name: "firstName",
+        type: "text",
+    },
+    {
+        label: "Last Name",
+        name: "lastName",
+        type: "text",
+    },
+    {
+        label: "Email",
+        name: "email",
+        type: "email",
+    },
+    {
+        label: "Home Address",
+        name: "address",
+        type: "text",
+    },
+    {
+        label: "Phone Number",
+        name: "phoneNumber",
+        type: "text",
+    },
+];
+export const inputClassName =
+    "w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-[#1e1e19] focus:ring-2 focus:ring-[#D50B8B] focus:outline-none";

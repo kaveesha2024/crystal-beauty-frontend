@@ -5,9 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Analytics: React.FC = () => {
     const navigate = useNavigate();
-    const { firstName, profilePicture, userId } = useSelector(
-        (state: RootState) => state.authentication
-    );
+    const { profilePicture, userId } = useSelector((state: RootState) => state.authentication);
     return (
         <div className="mb-5 h-full w-full px-5 pt-5">
             <div className="flex w-full items-center justify-between">
@@ -19,7 +17,7 @@ const Analytics: React.FC = () => {
                     }}
                 >
                     <img src={profilePicture} alt="image" className="h-12 w-12 rounded-full" />
-                    <p>{firstName}</p>
+                    <p>Profile</p>
                 </div>
             </div>
             <div>
