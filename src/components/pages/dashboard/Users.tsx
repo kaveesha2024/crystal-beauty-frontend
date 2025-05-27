@@ -4,12 +4,17 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import type { IGetAllUsersResponseTypes } from "../../../utility/types/getAllUsers/getAllUsers";
 import Swal from "sweetalert2";
+import Loading from "../../../utility/reUsable/Loading.tsx";
 
 const Users: React.FC = () => {
     const [allUsers, setAllUsers] = useState<IGetAllUsersResponseTypes[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
-        getUsers();
-    }, []);
+        if (isLoading) {
+            getUsers();
+            setIsLoading(false);
+        }
+    }, [isLoading]);
     const getUsers = async () => {
         try {
             const response = await axios.get("/api/get-all-users");
@@ -52,7 +57,11 @@ const Users: React.FC = () => {
     };
     return (
         <div className="h-screen w-full overflow-hidden px-5 pt-5">
-            <UsersTable allUsers={allUsers} handleDeleteUser={handleDeleteUser} />
+            {isLoading ? (
+                <Loading />
+            ) : (
+                <UsersTable allUsers={allUsers} handleDeleteUser={handleDeleteUser} />
+            )}
         </div>
     );
 };
