@@ -14,6 +14,7 @@ const setUserState = (state: IAuthSliceInitialStateTypes, payload: IAuthSlicePay
     state.address = payload.user?.address || "";
     state.profilePicture = payload.user?.profilePicture || "";
     state.role = payload.user?.role || "";
+    state.userId = payload.user?.userId || "";
     state.isBlocked = payload.user?.isBlocked || false;
 };
 export default setUserState;

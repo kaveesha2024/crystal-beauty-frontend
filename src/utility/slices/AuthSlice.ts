@@ -11,6 +11,7 @@ const initialState: IAuthSliceInitialStateTypes = {
     token: "",
     firstName: "",
     lastName: "",
+    userId: "",
     isVerified: false,
     email: "",
     phoneNumber: "",
@@ -33,6 +34,7 @@ const authenticationSlice = createSlice({
             state.isVerified = false;
             state.email = "";
             state.phoneNumber = "";
+            state.userId = "";
             state.address = "";
             state.profilePicture = "";
             state.role = "";

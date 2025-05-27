@@ -11,6 +11,7 @@ import NavBar from "../../components/navBar/NavBar.tsx";
 import { useSelector } from "react-redux";
 import { type RootState, store } from "../../../store.ts";
 import Dashboard from "../../components/pages/dashboard/Dashboard.tsx";
+import Profile from "../../components/pages/profile/Profile.tsx";
 
 axios.defaults.baseURL = "http://localhost:8000";
 axios.interceptors.request.use(
@@ -27,7 +28,7 @@ axios.interceptors.request.use(
     }
 );
 const AppRoutes: React.FC = () => {
-    const { role } = useSelector((state: RootState) => state.authentication);
+    const { role, isAuthenticated } = useSelector((state: RootState) => state.authentication);
     return (
         <div>
             <Toaster />
@@ -48,6 +49,10 @@ const AppRoutes: React.FC = () => {
                 <Route
                     path="/dashboard/*"
                     element={role === "admin" ? <Dashboard /> : <Navigate to="/" />}
+                />
+                <Route
+                    path={"/profile/:userId"}
+                    element={isAuthenticated ? <Profile /> : <Navigate to="/signin" />}
                 />
             </Routes>
             {/*<Footer />*/}

@@ -11,6 +11,7 @@ export interface IAuthSliceInitialStateTypes {
     role: string;
     isVerified: boolean;
     isBlocked: boolean;
+    userId: string;
 }
 export interface IAuthSlicePayloadTypes {
     token: string;

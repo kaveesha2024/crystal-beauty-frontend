@@ -1,14 +1,23 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../../store.ts";
+import { useNavigate } from "react-router-dom";
 
 const Analytics: React.FC = () => {
-    const { firstName, profilePicture } = useSelector((state: RootState) => state.authentication);
+    const navigate = useNavigate();
+    const { firstName, profilePicture, userId } = useSelector(
+        (state: RootState) => state.authentication
+    );
     return (
         <div className="mb-5 h-full w-full px-5 pt-5">
             <div className="flex w-full items-center justify-between">
                 <h2>Analytics</h2>
-                <div className="flex items-center gap-2" onClick={() => {}}>
+                <div
+                    className="hover:text-accent flex cursor-pointer items-center gap-2 transition duration-100 hover:scale-95"
+                    onClick={() => {
+                        navigate(`/profile/${userId}`);
+                    }}
+                >
                     <img src={profilePicture} alt="image" className="h-12 w-12 rounded-full" />
                     <p>{firstName}</p>
                 </div>
