@@ -39,6 +39,9 @@ const authenticationSlice = createSlice({
             state.profilePicture = "";
             state.role = "";
         },
+        verifyEmail: (state: IAuthSliceInitialStateTypes) => {
+            state.isVerified = true;
+        },
     },
     extraReducers: builder => {
         builder.addCase(signupApi.pending, (state: IAuthSliceInitialStateTypes) => {
@@ -74,4 +77,4 @@ const authenticationSlice = createSlice({
 });
 
 export default authenticationSlice.reducer;
-export const { signOut } = authenticationSlice.actions;
+export const { signOut, verifyEmail } = authenticationSlice.actions;

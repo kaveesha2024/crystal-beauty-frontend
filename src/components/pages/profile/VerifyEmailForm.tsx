@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { inputClassName } from "../../../utility/others/refactor.ts";
 import { SendIcon } from "lucide-react";
 
@@ -7,20 +7,22 @@ interface IVerifyEmailFormPropTypes {
     handleInputField: (event: React.ChangeEvent<HTMLInputElement>) => void;
     message: string;
     email: string;
+    isOtpSend: boolean;
+    setIsOtpSend: (value: boolean) => void;
+    verifyEmailAddress: () => void;
+    handleOtpInputData: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 const VerifyEmailForm: React.FC<IVerifyEmailFormPropTypes> = ({
     sendOtp,
     message,
     handleInputField,
     email,
+    isOtpSend,
+    verifyEmailAddress,
+    handleOtpInputData,
 }) => {
-    const [isOtpSend, setIsOtpSend] = useState<boolean>(false);
-    useEffect(() => {
-        setTimeout(() => {
-            setIsOtpSend(false);
-            console.log("hee");
-        }, 5 * 60 * 1000);
-    }, [isOtpSend]);
+    // const [isOtpSend, setIsOtpSend] = useState<boolean>(false);
+
     return (
         <div className="mt-20 flex h-[70vh] justify-center">
             <form>
@@ -40,7 +42,6 @@ const VerifyEmailForm: React.FC<IVerifyEmailFormPropTypes> = ({
                             disabled={isOtpSend}
                             onClick={() => {
                                 sendOtp();
-                                setIsOtpSend(true);
                             }}
                             className={isOtpSend ? "cursor-not-allowed" : "cursor-pointer"}
                         >
@@ -48,12 +49,24 @@ const VerifyEmailForm: React.FC<IVerifyEmailFormPropTypes> = ({
                         </button>
                     )}
                 </div>
-                <button
-                    type="button"
-                    className="bg-accent text-primary active:bg-primary border-accent active:text-accent mt-8 cursor-pointer rounded-sm px-4 py-2 font-bold active:border-2"
-                >
-                    Verify
-                </button>
+                {isOtpSend && (
+                    <div className="mt-4 flex w-50 gap-4">
+                        <input
+                            type="text"
+                            name={"otpInput"}
+                            onChange={handleOtpInputData}
+                            className={inputClassName}
+                            placeholder="OTP"
+                        />
+                        <button
+                            type="button"
+                            onClick={() => verifyEmailAddress()}
+                            className="outline-accent cursor-pointer rounded-md px-4 py-2 transition active:outline-2"
+                        >
+                            Verify
+                        </button>
+                    </div>
+                )}
             </form>
         </div>
     );

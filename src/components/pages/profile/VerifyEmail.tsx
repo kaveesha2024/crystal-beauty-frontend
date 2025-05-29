@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import type { RootState } from "../../../../store.ts";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import type { dispatchType, RootState } from "../../../../store.ts";
 import VerifyEmailForm from "./VerifyEmailForm.tsx";
-import emailjs from "@emailjs/browser";
 import getRandomNumber from "../../../utility/commonFunctions/getRandomNumber/getRandomNumber.ts";
-import toast from "react-hot-toast";
+import requestOtp from "../../../utility/functions/EmailVerification/RequestOtp.ts";
+import verifyOtp from "../../../utility/functions/EmailVerification/VerifyOtp.ts";
 
 const VerifyEmail: React.FC = () => {
+    const dispatch = useDispatch<dispatchType>();
     const {
         isVerified,
         email: currentEmail,
@@ -15,27 +16,31 @@ const VerifyEmail: React.FC = () => {
     const [email, setEmail] = useState<string>(currentEmail);
     const [message, setMessage] = useState<string>("");
     const [otp, setOtp] = useState<number>(0);
+    const [isOtpSend, setIsOtpSend] = useState(false);
+    const [inputOtp, setInputOtp] = useState(0);
+    useEffect(() => {
+        setOtp(Number(getRandomNumber(6)));
+    }, []);
+    useEffect(() => {
+        setTimeout(
+            () => {
+                setIsOtpSend(false);
+            },
+            5 * 60 * 1000
+        );
+    }, [isOtpSend]);
     const handleInputField = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const value = event.target.value;
         setEmail(value);
     };
     const sendOtp = async () => {
-        setOtp(Number(getRandomNumber(6)));
-        const res = await emailjs.send(
-            "service_3zgefe2",
-            "template_j0zm26u",
-            {
-                firstName,
-                otp,
-                email,
-            },
-            "elF_g9pOU4aRlz1HA"
-        );
-        if (res.status !== 200) {
-            toast.error("Something went wrong");
-        }
-        // store otp in the DB
-        setMessage("Your verification code sent to your email");
+        await requestOtp(firstName, otp, email, setIsOtpSend, setMessage);
+    };
+    const handleOtpInputData = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputOtp(Number(event.target.value));
+    };
+    const verifyEmailAddress = async () => {
+        await verifyOtp(inputOtp, email, dispatch);
     };
     return (
         <div>
@@ -55,6 +60,10 @@ const VerifyEmail: React.FC = () => {
                     handleInputField={handleInputField}
                     message={message}
                     email={email}
+                    isOtpSend={isOtpSend}
+                    setIsOtpSend={setIsOtpSend}
+                    verifyEmailAddress={verifyEmailAddress}
+                    handleOtpInputData={handleOtpInputData}
                 />
             )}
         </div>
