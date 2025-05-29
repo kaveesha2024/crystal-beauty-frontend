@@ -1,13 +1,27 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import type { RootState } from "../../../../store.ts";
-import { Link, Route, Routes, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import type { dispatchType, RootState } from "../../../../store.ts";
+import {
+    Link,
+    type NavigateFunction,
+    Route,
+    Routes,
+    useNavigate,
+    useParams,
+} from "react-router-dom";
 import ManageProfile from "./ManageProfile.tsx";
 import VerifyEmail from "./VerifyEmail.tsx";
+import Swal from "sweetalert2";
+import { signOut } from "../../../utility/slices/AuthSlice.ts";
+import type { IAuthSliceInitialStateTypes } from "../../../utility/types/slices/authSlice";
 
 const Profile: React.FC = () => {
-    const user = useSelector((state: RootState) => state.authentication);
-    const userId = useParams().userId;
+    const navigate: NavigateFunction = useNavigate();
+    const dispatch = useDispatch<dispatchType>();
+    const user: IAuthSliceInitialStateTypes = useSelector(
+        (state: RootState) => state.authentication
+    );
+    const userId: string | undefined = useParams().userId;
     return (
         <div className="w-full px-5">
             <p>
@@ -32,12 +46,27 @@ const Profile: React.FC = () => {
                 >
                     Verify Email Address
                 </Link>
-                <Link className="hover:text-accent transition duration-100 hover:scale-95" to={"/"}>
-                    Change Password
-                </Link>
-                <Link className="hover:text-accent transition duration-100 hover:scale-95" to={"/"}>
+                <button
+                    className="hover:text-accent transition duration-100 hover:scale-95"
+                    onClick={() => {
+                        Swal.fire({
+                            title: "Are you sure?",
+                            text: "Do you want to sign out of your account?",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Sign Out",
+                        }).then(result => {
+                            if (result.isConfirmed) {
+                                dispatch(signOut());
+                                navigate("/");
+                            }
+                        });
+                    }}
+                >
                     Logout
-                </Link>
+                </button>
             </div>
             <div>
                 <Routes>

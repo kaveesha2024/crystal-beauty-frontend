@@ -50,8 +50,7 @@ const VerifyEmail: React.FC = () => {
                         className="mb-4 rounded-lg bg-green-50 p-4 text-sm text-green-800"
                         role="alert"
                     >
-                        <span className="font-medium">Success alert!</span> Change a few things up
-                        and try submitting again.
+                        <span>You have already verify the your email address !</span>
                     </div>
                 </div>
             ) : (
