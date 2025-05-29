@@ -5,6 +5,7 @@ import Analytics from "./Analytics.tsx";
 import Products from "./Products.tsx";
 import Users from "./Users.tsx";
 import UpdateUser from "./UpdateUser.tsx";
+import AddProduct from "./AddProduct.tsx";
 
 const Dashboard: React.FC = () => {
     return (
@@ -14,6 +15,7 @@ const Dashboard: React.FC = () => {
                 <Routes>
                     <Route path="/" element={<Analytics />} />
                     <Route path="/products" element={<Products />} />
+                    <Route path="/products/add_product" element={<AddProduct />} />
                     <Route path="/users" element={<Users />} />
                     <Route path="/users/update/:id" element={<UpdateUser />} />
                 </Routes>
