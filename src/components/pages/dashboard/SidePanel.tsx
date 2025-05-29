@@ -28,7 +28,7 @@ const SidePanel: React.FC = () => {
                 </Link>
                 <Link
                     className="active:text-accent hover:text-accent flex items-center gap-1 p-3 transition duration-100 hover:scale-95"
-                    to="/dashboard/roducts"
+                    to="/dashboard/products"
                 >
                     <Package />
                     Products
