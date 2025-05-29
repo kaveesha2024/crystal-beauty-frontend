@@ -16,8 +16,8 @@ const Analytics: React.FC = () => {
                         navigate(`/profile/${userId}`);
                     }}
                 >
-                    <img src={profilePicture} alt="image" className="h-12 w-12 rounded-full" />
                     <p>Profile</p>
+                    <img src={profilePicture} alt="image" className="h-12 w-12 rounded-full" />
                 </div>
             </div>
             <div>

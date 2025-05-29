@@ -5,10 +5,11 @@ import { useSelector } from "react-redux";
 import type { RootState } from "../../../store.ts";
 export const Header: React.FC = () => {
     const navigate = useNavigate();
-    const state = useSelector((state: RootState) => state.authentication);
+    const { role, isAuthenticated, userId } = useSelector(
+        (state: RootState) => state.authentication
+    );
     return (
         <header className="w-full">
-            {/*<div className="py-2">*/}
             <div className="bg-secondary py-2 text-[#FFEDFA]">
                 <div className="container mx-auto px-4">
                     <div className="flex items-center justify-center text-sm md:justify-end">
@@ -51,9 +52,9 @@ export const Header: React.FC = () => {
                         <div className="flex items-center space-x-4">
                             <button
                                 onClick={() => {
-                                    if (state.isAuthenticated && state.role === "user") {
-                                        navigate("/profile");
-                                    } else if (state.isAuthenticated && state.role === "admin") {
+                                    if (isAuthenticated && role === "user") {
+                                        navigate("/profile/" + userId);
+                                    } else if (isAuthenticated && role === "admin") {
                                         navigate("/dashboard");
                                     } else {
                                         navigate("/signin");
