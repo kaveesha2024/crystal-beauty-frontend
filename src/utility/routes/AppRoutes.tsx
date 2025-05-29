@@ -4,7 +4,7 @@ import App from "../../App.tsx";
 import Signup from "../../components/pages/auth/signup/Signup.tsx";
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
-// import { Footer } from "../../components/footer/Footer.tsx";
+import { Footer } from "../../components/footer/Footer.tsx";
 import { Header } from "../../components/header/Header.tsx";
 import SignIn from "../../components/pages/auth/signin/SignIn.tsx";
 import NavBar from "../../components/navBar/NavBar.tsx";
@@ -55,7 +55,7 @@ const AppRoutes: React.FC = () => {
                     element={isAuthenticated ? <Profile /> : <Navigate to="/signin" />}
                 />
             </Routes>
-            {/*<Footer />*/}
+            <Footer />
         </div>
     );
 };

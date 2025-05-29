@@ -18,7 +18,7 @@ const ManageProfileForm: React.FC<IManageProfileFormPropsTypes> = ({
     };
 
     return (
-        <form className="mx-auto max-w-xl space-y-6 rounded-2xl bg-[#FFEDFA] p-8 shadow-md">
+        <form className="mx-auto my-10 max-w-xl space-y-6 rounded-2xl bg-[#FFEDFA] p-8 shadow-md">
             <h2 className="text-2xl font-semibold text-[#1e1e19]">Manage Profile</h2>
             {formFields.map(field => (
                 <div key={field.name}>
