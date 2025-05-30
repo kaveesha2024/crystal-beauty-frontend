@@ -7,8 +7,9 @@ import { type NavigateFunction, useNavigate } from "react-router-dom";
 import LoadingTableRow from "../../../utility/reUsable/LoadingTableRow.tsx";
 interface IProductTablePropsTypes {
     allProducts: IAllProductsTypes[];
+    deleteProduct: (productId: string) => void;
 }
-const ProductTable: React.FC<IProductTablePropsTypes> = ({ allProducts }) => {
+const ProductTable: React.FC<IProductTablePropsTypes> = ({ allProducts, deleteProduct }) => {
     const navigate: NavigateFunction = useNavigate();
     return (
         <div className="relative mt-10 mr-5">
@@ -66,7 +67,10 @@ const ProductTable: React.FC<IProductTablePropsTypes> = ({ allProducts }) => {
                                     >
                                         <Pencil />
                                     </button>
-                                    <button className="hover:text-accent cursor-pointer text-red-600 transition duration-100 hover:scale-95 active:text-black">
+                                    <button
+                                        onClick={() => deleteProduct(product.productId)}
+                                        className="hover:text-accent cursor-pointer text-red-600 transition duration-100 hover:scale-95 active:text-black"
+                                    >
                                         <Trash />
                                     </button>
                                 </td>

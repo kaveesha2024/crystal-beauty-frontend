@@ -5,6 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import type { IAllProductsTypes } from "../../../utility/types/getProducts/getProducts";
 import { PackagePlus } from "lucide-react";
+import Swal from "sweetalert2";
 
 const Products: React.FC = () => {
     const [allProducts, setAllProducts] = useState<IAllProductsTypes[]>([]);
@@ -23,6 +24,36 @@ const Products: React.FC = () => {
         }
         toast.error(response.data.message);
     };
+    const deleteProduct = async (productId: string) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then(async result => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await axios.delete(
+                        "/api/delete_product?productId=" + productId
+                    );
+                    if (response.data.status === 200) {
+                        getAllProducts();
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Product deleted successfully",
+                            icon: "success",
+                        });
+                        return;
+                    }
+                } catch (error) {
+                    toast.error("something went wrong.");
+                }
+            }
+        });
+    };
     return (
         <div className="h-full">
             <Link
@@ -34,7 +65,7 @@ const Products: React.FC = () => {
                     add new
                 </span>
             </Link>
-            <ProductTable allProducts={allProducts} />
+            <ProductTable allProducts={allProducts} deleteProduct={deleteProduct} />
         </div>
     );
 };
