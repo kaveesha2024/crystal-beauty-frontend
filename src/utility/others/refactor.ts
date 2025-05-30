@@ -38,5 +38,20 @@ export const formFields = [
         type: "text",
     },
 ];
+export const headings = [
+    "Product Id",
+    "Product Name",
+    "Product Price",
+    "Labelled Price",
+    "Discount",
+    "Stock",
+    "Warranty",
+    "Alternative Names",
+    "Description",
+    "Brand",
+    "In Stock",
+    "Product Image",
+    "Action",
+];
 export const inputClassName =
     "w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-[#1e1e19] focus:ring-2 focus:ring-[#D50B8B] focus:outline-none";
