@@ -4,8 +4,10 @@ import type { IProductTypes } from "../../../utility/types/addProduct/addProduct
 import getImageUrlsPromise from "../../../utility/promises/getImageUrlsPromise.ts";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct: React.FC = () => {
+    const navigate = useNavigate();
     const [product, setProduct] = useState<IProductTypes>({
         productName: "",
         labelledPrice: 0,
@@ -46,8 +48,9 @@ const AddProduct: React.FC = () => {
             product.images = await Promise.all(images);
         }
         try {
-            const response = await axios.post("/api/add_product", product);
+            const response = await axios.post("/api/create_product", product);
             if (response.data.status === 200) {
+                navigate(-1);
                 toast.success("Product added successfully");
                 return;
             }
