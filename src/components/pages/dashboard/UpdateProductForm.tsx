@@ -1,13 +1,7 @@
 import React, { useState } from "react";
-import type { IUpdatedProductDetailsTypes } from "../../../utility/types/updateProduct/updateProduct";
+import type { IUpdateProductFormPropTypes } from "../../../utility/types/updateProduct/updateProduct";
 
-interface IUpdateProductFormPropsTypes {
-    updatedProductDetails: IUpdatedProductDetailsTypes;
-    handleUpdateProductInputFieldsDetails: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    handleUpdateProductSelectFieldsDetails: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-    handleUpdateFormSubmit: (image: FileList | []) => void;
-}
-const UpdateProductForm: React.FC<IUpdateProductFormPropsTypes> = ({
+const UpdateProductForm: React.FC<IUpdateProductFormPropTypes> = ({
     updatedProductDetails,
     handleUpdateProductInputFieldsDetails,
     handleUpdateProductSelectFieldsDetails,
