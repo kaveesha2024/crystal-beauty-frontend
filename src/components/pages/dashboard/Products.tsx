@@ -8,14 +8,14 @@ import { PackagePlus } from "lucide-react";
 
 const Products: React.FC = () => {
     const [allProducts, setAllProducts] = useState<IAllProductsTypes[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     useEffect(() => {
         if (isLoading) {
             getAllProducts();
             setIsLoading(false);
         }
     }, [isLoading]);
-    const getAllProducts = async () => {
+    const getAllProducts = async (): Promise<void> => {
         const response = await axios.get("/api/get_all_products");
         if (response.data.status === 200) {
             setAllProducts(response.data.message);
