@@ -62,6 +62,7 @@ const UpdateProduct: React.FC = () => {
         }
     };
     const handleUpdateFormSubmit = async (images: FileList | []) => {
+        const toastId = toast.loading("Saving changes...");
         if (images.length > 0) {
             let imagesArray = [];
             for (let i = 0; i < images.length; i++) {
@@ -75,11 +76,13 @@ const UpdateProduct: React.FC = () => {
                 updatedProductDetails
             );
             if (response.data.status === 200) {
+                toast.dismiss(toastId);
                 navigate(-1);
                 toast.success("Product updated successfully");
                 return;
             }
         } catch (error) {
+            toast.dismiss(toastId);
             toast.error("Something went wrong");
         }
     };
