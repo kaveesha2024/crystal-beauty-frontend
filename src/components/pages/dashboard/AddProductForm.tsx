@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { PackagePlus } from "lucide-react";
+import AddProductHeading from "../../../utility/reUsable/AddProductHeading.tsx";
 interface IAddProductFormPropTypes {
     handleAddProductInputDetails: (event: React.ChangeEvent<HTMLInputElement>) => void;
     handleAddProductSubmit: (image: FileList | []) => void;
@@ -17,6 +18,7 @@ const AddProductForm: React.FC<IAddProductFormPropTypes> = ({
     return (
         <div className="flex min-h-screen items-center justify-center bg-[#FFEDFA] p-6">
             <form className="w-full max-w-2xl space-y-5 rounded-2xl bg-white p-6 shadow-md">
+                <AddProductHeading />
                 <h2 className="mb-4 text-2xl font-bold text-[#D50B8B]">
                     <span className="flex items-center gap-2">
                         <PackagePlus /> Add New Product
