@@ -27,6 +27,7 @@ const AddProduct: React.FC = () => {
         });
     };
     const handleAddProductSubmit = async (productImage: FileList | []) => {
+        const toastId = toast.loading("Adding Product Please wait....");
         if (
             product.productName === "" ||
             product.labelledPrice === 0 ||
@@ -50,13 +51,16 @@ const AddProduct: React.FC = () => {
         try {
             const response = await axios.post("/api/create_product", product);
             if (response.data.status === 200) {
+                toast.dismiss(toastId);
                 navigate(-1);
                 toast.success("Product added successfully");
                 return;
             }
+            toast.dismiss(toastId);
             toast.error(response.data.message);
             return;
         } catch (e) {
+            toast.dismiss(toastId);
             toast.error("Something went wrong");
         }
     };

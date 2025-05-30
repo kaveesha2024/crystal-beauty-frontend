@@ -40,7 +40,7 @@ const Products: React.FC = () => {
                         "/api/delete_product?productId=" + productId
                     );
                     if (response.data.status === 200) {
-                        getAllProducts();
+                        setIsLoading(true);
                         Swal.fire({
                             title: "Deleted!",
                             text: "Product deleted successfully",
