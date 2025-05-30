@@ -147,7 +147,7 @@ const UpdateProductForm: React.FC<IUpdateProductFormPropTypes> = ({
                 <button
                     type="button"
                     onClick={() => handleUpdateFormSubmit(files)}
-                    className="w-full rounded-lg bg-[#D50B8B] px-4 py-3 font-medium text-white transition duration-200 hover:bg-[#a3096c] focus:ring-2 focus:ring-[#D50B8B] focus:ring-offset-2 focus:outline-none"
+                    className="bg-accent w-full cursor-pointer rounded-lg px-4 py-3 font-medium text-white transition duration-200 hover:bg-[#a3096c] focus:ring-2 focus:ring-[#D50B8B] focus:ring-offset-2 focus:outline-none"
                 >
                     Save Product
                 </button>

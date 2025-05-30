@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { type RootState, store } from "../../../store.ts";
 import Dashboard from "../../components/pages/dashboard/Dashboard.tsx";
 import Profile from "../../components/pages/profile/Profile.tsx";
+import AllProductsPage from "../../components/pages/product/AllProductsPage.tsx";
 
 axios.defaults.baseURL = "http://localhost:8000";
 axios.interceptors.request.use(
@@ -36,6 +37,7 @@ const AppRoutes: React.FC = () => {
             <NavBar />
             <Routes>
                 <Route path="/" element={<App />} />
+                <Route path="/products" element={<AllProductsPage />} />
                 <Route
                     path="/*"
                     element={
