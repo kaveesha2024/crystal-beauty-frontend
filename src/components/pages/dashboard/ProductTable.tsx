@@ -3,10 +3,13 @@ import type { IAllProductsTypes } from "../../../utility/types/getProducts/getPr
 import TableHeader from "../../../utility/reUsable/TableHeader.tsx";
 import { headings } from "../../../utility/others/refactor.ts";
 import { Pencil, Trash } from "lucide-react";
+import { type NavigateFunction, useNavigate } from "react-router-dom";
+import LoadingTableRow from "../../../utility/reUsable/LoadingTableRow.tsx";
 interface IProductTablePropsTypes {
     allProducts: IAllProductsTypes[];
 }
 const ProductTable: React.FC<IProductTablePropsTypes> = ({ allProducts }) => {
+    const navigate: NavigateFunction = useNavigate();
     return (
         <div className="relative mt-10 mr-5">
             <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
@@ -51,7 +54,14 @@ const ProductTable: React.FC<IProductTablePropsTypes> = ({ allProducts }) => {
                                     />
                                 </td>
                                 <td className="flex gap-2 px-6 py-4">
-                                    <button className="hover:text-accent cursor-pointer text-blue-600 transition duration-100 hover:scale-95 active:text-black">
+                                    <button
+                                        onClick={() =>
+                                            navigate(`update/${product.productId}`, {
+                                                state: product,
+                                            })
+                                        }
+                                        className="hover:text-accent cursor-pointer text-blue-600 transition duration-100 hover:scale-95 active:text-black"
+                                    >
                                         <Pencil />
                                     </button>
                                     <button className="hover:text-accent cursor-pointer text-red-600 transition duration-100 hover:scale-95 active:text-black">
@@ -62,7 +72,7 @@ const ProductTable: React.FC<IProductTablePropsTypes> = ({ allProducts }) => {
                         ))
                     ) : (
                         <tr className="border-b border-gray-200 dark:border-gray-700 dark:bg-gray-800">
-                            <td className="border-primary h-[40px] w-[40px] animate-spin rounded-full border-5 border-b-blue-600"></td>
+                            <LoadingTableRow />
                         </tr>
                     )}
                 </tbody>

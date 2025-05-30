@@ -7,6 +7,7 @@ import type {
 import TableHeader from "../../../utility/reUsable/TableHeader.tsx";
 import { userTableHeaders } from "../../../utility/others/refactor.ts";
 import { useNavigate } from "react-router-dom";
+import LoadingTableRow from "../../../utility/reUsable/LoadingTableRow.tsx";
 const UsersTable: React.FC<IUsersTableProps> = ({ allUsers, handleDeleteUser }) => {
     const navigate = useNavigate();
     return (
@@ -82,9 +83,7 @@ const UsersTable: React.FC<IUsersTableProps> = ({ allUsers, handleDeleteUser }) 
                         })
                     ) : (
                         <tr className="border-b border-gray-200 dark:border-gray-700 dark:bg-gray-800">
-                            <td className="px-6 py-4">
-                                <div className="border-primary h-[40px] w-[40px] animate-spin rounded-full border-[5px] border-r-blue-600"></div>
-                            </td>
+                            <LoadingTableRow />
                         </tr>
                     )}
                 </tbody>
