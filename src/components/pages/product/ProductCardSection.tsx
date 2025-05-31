@@ -13,7 +13,7 @@ const ProductCardSection: React.FC = () => {
             setIsLoading(false);
         }
     }, [isLoading]);
-    const getProducts = async () => {
+    const getProducts = async (): Promise<void> => {
         try {
             const response = await axios.get("/api/get_all_products");
             setProducts(response.data?.message);

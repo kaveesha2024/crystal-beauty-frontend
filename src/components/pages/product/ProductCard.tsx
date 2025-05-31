@@ -1,14 +1,6 @@
 import React from "react";
+import type { IProductCardPropsTypes } from "../../../utility/types/getProducts/getProducts";
 
-interface IProductCardPropsTypes {
-    price: number;
-    labelledPrice: number;
-    discount: number;
-    brand: string;
-    productName: string;
-    description: string;
-    image: string;
-}
 const ProductCard: React.FC<IProductCardPropsTypes> = ({
     price,
     labelledPrice,

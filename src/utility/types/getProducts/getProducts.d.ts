@@ -15,3 +15,12 @@ export interface IAllProductsTypes {
     createdAt: string;
     updatedAt: string;
 }
+export interface IProductCardPropsTypes {
+    price: number;
+    labelledPrice: number;
+    discount: number;
+    brand: string;
+    productName: string;
+    description: string;
+    image: string;
+}
