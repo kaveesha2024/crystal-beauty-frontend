@@ -13,7 +13,7 @@ const ProductTable: React.FC<IProductTablePropsTypes> = ({ allProducts, deletePr
     const navigate: NavigateFunction = useNavigate();
     return (
         <div className="relative mt-10 mr-5 mb-10">
-            <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
+            <table className="w-full overflow-x-scroll text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
                 <thead className="bg-gray-50 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         {headings.map((heading: string, index: number) => (

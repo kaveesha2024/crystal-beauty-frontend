@@ -13,6 +13,7 @@ import { type RootState, store } from "../../../store.ts";
 import Dashboard from "../../components/pages/dashboard/Dashboard.tsx";
 import Profile from "../../components/pages/profile/Profile.tsx";
 import AllProductsPage from "../../components/pages/product/AllProductsPage.tsx";
+import ProductOverViewPage from "../../components/pages/product/ProductOverViewPage.tsx";
 
 axios.defaults.baseURL = "http://localhost:8000";
 axios.interceptors.request.use(
@@ -31,13 +32,17 @@ axios.interceptors.request.use(
 const AppRoutes: React.FC = () => {
     const { role, isAuthenticated } = useSelector((state: RootState) => state.authentication);
     return (
-        <div>
+        <div className="w-full max-w-full">
             <Toaster />
             <Header />
             <NavBar />
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/products" element={<AllProductsPage />} />
+                <Route
+                    path="/products/view_product_details/:id"
+                    element={<ProductOverViewPage />}
+                />
                 <Route
                     path="/*"
                     element={

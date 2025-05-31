@@ -31,12 +31,3 @@ body {
 .spaced {
     letter-spacing: 10px;
 }
-.product-image-price-overlay:hover:after{
-    height: 100%;
-    width: 100%;
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,0.5);
-}
