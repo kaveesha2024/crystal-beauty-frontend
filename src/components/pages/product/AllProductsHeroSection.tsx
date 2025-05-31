@@ -2,7 +2,7 @@ import React from "react";
 
 const AllProductsHeroSection: React.FC = () => {
     return (
-        <div className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
+        <div className="relative h-[90vh] min-h-[600px] w-full overflow-hidden">
             <div className="absolute inset-0 z-0">
                 <div className="h-full w-full bg-[url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')] bg-cover bg-center">
                     <div className="absolute inset-0 bg-gradient-to-r from-[#1e1e19]/90 to-[#D50B8B]/70" />
@@ -34,7 +34,7 @@ const AllProductsHeroSection: React.FC = () => {
                         View Collections
                     </button>
                 </div>
-                <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 transform flex-wrap justify-center gap-8 rounded-xl bg-[#1e1e19]/80 px-8 py-4 backdrop-blur-sm">
+                <div className="absolute bottom-7 left-1/2 flex -translate-x-1/2 transform flex-wrap justify-center gap-8 rounded-xl bg-[#1e1e19]/80 px-8 py-4 backdrop-blur-sm">
                     <div className="text-center">
                         <div className="text-2xl font-bold text-[#FFEDFA]">10K+</div>
                         <div className="text-sm text-[#FFEDFA]/80">Happy Customers</div>

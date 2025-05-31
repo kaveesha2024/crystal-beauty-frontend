@@ -25,3 +25,18 @@ body {
 .animation-delay-2000 {
     animation-delay: 2s;
 }
+.shadow:hover {
+    box-shadow: 7px 5px 5px 0px rgba(0,0,0,0.75);
+}
+.spaced {
+    letter-spacing: 10px;
+}
+.product-image-price-overlay:hover:after{
+    height: 100%;
+    width: 100%;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+}
