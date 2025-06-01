@@ -1,19 +1,15 @@
 import React, { useState } from "react";
-import type { IAllProductsTypes } from "../../../utility/types/getProducts/getProducts";
 import { Heart, ShoppingBag, ShoppingCart } from "lucide-react";
-import { addToCart, deleteFromCart } from "../../../utility/slices/CartSlice.ts";
+import { addToCart, deleteFromCart } from "../../../utility/slices/CartSlice/CartSlice.ts";
 import { useDispatch, useSelector } from "react-redux";
 import type { dispatchType, RootState } from "../../../../store.ts";
 import Swal from "sweetalert2";
-
-interface IProductOverViewPropsTypes {
-    product: IAllProductsTypes;
-}
+import type { IProductOverViewPropsTypes } from "../../../utility/types/productOverView/productOverView";
 
 const ProductOverView: React.FC<IProductOverViewPropsTypes> = ({ product }) => {
     const dispatch = useDispatch<dispatchType>();
     const { cart } = useSelector((state: RootState) => state.cart);
-    const [currentPicture, setCurrentPicture] = useState(product?.images[0]);
+    const [currentPicture, setCurrentPicture] = useState<string>(product?.images[0]);
     const handleAddToCart = () => {
         const productInCart = cart.findIndex(
             productInCart => productInCart.productId === product.productId

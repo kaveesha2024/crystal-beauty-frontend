@@ -1,6 +1,6 @@
 import React from "react";
 import { PhoneIcon, ShoppingCartIcon, HeartIcon, SearchIcon, User } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../store.ts";
 export const Header: React.FC = () => {
@@ -8,6 +8,7 @@ export const Header: React.FC = () => {
     const { role, isAuthenticated, userId } = useSelector(
         (state: RootState) => state.authentication
     );
+    const { cart } = useSelector((state: RootState) => state.cart);
     return (
         <header className="w-full">
             <div className="bg-secondary py-2 text-[#FFEDFA]">
@@ -70,12 +71,17 @@ export const Header: React.FC = () => {
                                     0
                                 </span>
                             </button>
-                            <button className="relative cursor-pointer p-2 transition-colors hover:text-[#D50B8B]">
+                            <Link
+                                to="/cart"
+                                className="relative cursor-pointer p-2 transition-colors hover:text-[#D50B8B]"
+                            >
                                 <ShoppingCartIcon size={24} />
-                                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#D50B8B] text-xs text-white">
-                                    0
-                                </span>
-                            </button>
+                                {cart.length > 0 && (
+                                    <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#D50B8B] text-xs text-white">
+                                        {cart.length}
+                                    </span>
+                                )}
+                            </Link>
                         </div>
                     </div>
                 </div>

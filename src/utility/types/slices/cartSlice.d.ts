@@ -5,7 +5,12 @@ export interface ICartItemTypes {
     unitPrice: number;
     totalPrice: number;
     image: string;
+    stock: number;
 }
 export interface ICartSliceInitialStateTypes {
     cart: ICartItemTypes[];
+}
+export interface ISetQuantityPayloadTypes {
+    productId: string;
+    quantity: number;
 }
