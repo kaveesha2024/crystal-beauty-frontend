@@ -1,13 +1,40 @@
 import React, { useState } from "react";
 import type { IAllProductsTypes } from "../../../utility/types/getProducts/getProducts";
 import { Heart, ShoppingBag, ShoppingCart } from "lucide-react";
+import { addToCart, deleteFromCart } from "../../../utility/slices/CartSlice.ts";
+import { useDispatch, useSelector } from "react-redux";
+import type { dispatchType, RootState } from "../../../../store.ts";
+import Swal from "sweetalert2";
 
 interface IProductOverViewPropsTypes {
     product: IAllProductsTypes;
 }
 
 const ProductOverView: React.FC<IProductOverViewPropsTypes> = ({ product }) => {
+    const dispatch = useDispatch<dispatchType>();
+    const { cart } = useSelector((state: RootState) => state.cart);
     const [currentPicture, setCurrentPicture] = useState(product?.images[0]);
+    const handleAddToCart = () => {
+        const productInCart = cart.findIndex(
+            productInCart => productInCart.productId === product.productId
+        );
+        if (productInCart === -1) {
+            dispatch(addToCart(product));
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Product added to cart",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            return;
+        }
+        Swal.fire({
+            title: "This product is already in your cart",
+            icon: "success",
+            draggable: true,
+        });
+    };
     return (
         <div className="mb-5 flex h-[90vh] w-full items-center justify-center gap-5 px-20 py-10">
             <div className="relative h-[620px] w-[50%] bg-white pt-5">
@@ -73,11 +100,17 @@ const ProductOverView: React.FC<IProductOverViewPropsTypes> = ({ product }) => {
                     </p>
                 </div>
                 <div className="flex justify-evenly gap-5">
-                    <button className="bg-accent active:bg-accent/70 text-primary flex w-[250px] cursor-pointer items-center justify-center gap-2 rounded-tl-2xl rounded-br-2xl py-2 font-bold tracking-widest uppercase transition duration-100 hover:scale-95">
+                    <button
+                        onClick={handleAddToCart}
+                        className="bg-accent active:bg-accent/70 text-primary flex w-[250px] cursor-pointer items-center justify-center gap-2 rounded-tl-2xl rounded-br-2xl py-2 font-bold tracking-widest uppercase transition duration-100 hover:scale-95"
+                    >
                         <ShoppingCart /> Add To Cart
                     </button>
                     <button className="bg-accent active:bg-accent/70 te text-primary flex w-[250px] cursor-pointer items-center justify-center gap-2 rounded-tl-2xl rounded-br-2xl py-2 font-bold tracking-widest uppercase transition duration-100 hover:scale-95">
                         <ShoppingBag /> Buy Now
+                    </button>
+                    <button onClick={() => dispatch(deleteFromCart(product.productId))}>
+                        delete
                     </button>
                 </div>
             </div>
