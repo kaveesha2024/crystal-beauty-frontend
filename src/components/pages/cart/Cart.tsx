@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import type { dispatchType, RootState } from "../../../../store.ts";
 import { MdCancel } from "react-icons/md";
@@ -10,6 +10,7 @@ import {
     setQuantity,
 } from "../../../utility/slices/CartSlice/CartSlice.ts";
 import { Minus, Plus } from "lucide-react";
+import TotalSection from "./TotalSection.tsx";
 
 const Cart: React.FC = () => {
     const dispatch = useDispatch<dispatchType>();
@@ -96,6 +97,7 @@ const Cart: React.FC = () => {
                         </div>
                     </div>
                 ))}
+            <TotalSection />
         </div>
     );
 };

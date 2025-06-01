@@ -7,7 +7,7 @@ export const addToCartAction = () => {
         const { payload } = action;
         const itemIndex = state.cart.findIndex(item => item.productId === payload.productId);
         if (itemIndex === -1) {
-            state.cart.push({
+            state.cart.unshift({
                 productId: payload.productId,
                 quantity: 1,
                 productName: payload.productName,

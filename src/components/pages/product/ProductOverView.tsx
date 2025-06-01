@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Heart, ShoppingBag, ShoppingCart } from "lucide-react";
-import { addToCart, deleteFromCart } from "../../../utility/slices/CartSlice/CartSlice.ts";
+import { addToCart } from "../../../utility/slices/CartSlice/CartSlice.ts";
 import { useDispatch, useSelector } from "react-redux";
 import type { dispatchType, RootState } from "../../../../store.ts";
 import Swal from "sweetalert2";
@@ -104,9 +104,6 @@ const ProductOverView: React.FC<IProductOverViewPropsTypes> = ({ product }) => {
                     </button>
                     <button className="bg-accent active:bg-accent/70 te text-primary flex w-[250px] cursor-pointer items-center justify-center gap-2 rounded-tl-2xl rounded-br-2xl py-2 font-bold tracking-widest uppercase transition duration-100 hover:scale-95">
                         <ShoppingBag /> Buy Now
-                    </button>
-                    <button onClick={() => dispatch(deleteFromCart(product.productId))}>
-                        delete
                     </button>
                 </div>
             </div>
