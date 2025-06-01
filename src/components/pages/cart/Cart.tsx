@@ -11,9 +11,11 @@ import {
 } from "../../../utility/slices/CartSlice/CartSlice.ts";
 import { Minus, Plus } from "lucide-react";
 import TotalSection from "./TotalSection.tsx";
+import { type NavigateFunction, useNavigate } from "react-router-dom";
 
 const Cart: React.FC = () => {
     const dispatch = useDispatch<dispatchType>();
+    const navigate: NavigateFunction = useNavigate();
     const { cart } = useSelector((state: RootState) => state.cart);
     return (
         <div className="mb-10 flex flex-col items-center justify-start px-5">
@@ -26,13 +28,18 @@ const Cart: React.FC = () => {
                         key={index}
                         className="border-secondary/20 mt-10 flex h-[200px] w-full max-w-[1000px] items-center justify-between border-t-[1px] border-b-[1px]"
                     >
-                        <div className="flex items-center gap-5">
+                        <div
+                            className="flex cursor-pointer items-center gap-5"
+                            onClick={() =>
+                                navigate(`/products/view_product_details/${item.productId}`)
+                            }
+                        >
                             <img
-                                className="h-[150px] w-[150px] rounded-tl-2xl rounded-br-2xl shadow-2xl"
+                                className="h-[150px] w-[150px] rounded-tl-2xl rounded-br-2xl shadow-2xl transition duration-150 hover:scale-105"
                                 src={item.image}
                                 alt="image"
                             />
-                            <p className="line-clamp-5 w-[200px] font-semibold tracking-widest">
+                            <p className="line-clamp-5 w-[200px] font-semibold tracking-widest underline-offset-2 hover:underline">
                                 {item.productName}
                             </p>
                         </div>

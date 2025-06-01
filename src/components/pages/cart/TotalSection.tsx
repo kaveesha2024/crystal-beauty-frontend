@@ -2,13 +2,16 @@ import React from "react";
 import { FaTruck } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../../store.ts";
+import { Link, type NavigateFunction, useNavigate } from "react-router-dom";
+import { ChevronLeft } from "lucide-react";
 
 const TotalSection: React.FC = () => {
     const { cart } = useSelector((state: RootState) => state.cart);
+    const navigate: NavigateFunction = useNavigate();
     const subtotal = cart.reduce((acc, item) => acc + item.unitPrice * item.quantity, 0);
     const total = subtotal + 300;
     return (
-        <div className="mt-10 flex h-[500px] w-[1000px] flex-col items-end font-mono">
+        <div className="relative mt-10 flex w-[1000px] flex-col items-end font-mono">
             <div className="flex w-[40%] flex-col">
                 <div className="border-secondary/20 flex w-full justify-between border-b pb-5">
                     <span className="font-semibold">Subtotal :</span>
@@ -28,9 +31,17 @@ const TotalSection: React.FC = () => {
                     <FaTruck />
                 </div>
                 <div className="h-[5px] w-full rounded-full bg-gradient-to-l from-green-600 to-[#A8EB6D]"></div>
-                <button className="bg-secondary text-primary mt-3 h-[50px] w-full cursor-pointer transition duration-200 hover:bg-black">
+                <button
+                    onClick={() => navigate("/checkout")}
+                    className="bg-secondary text-primary mt-3 h-[50px] w-full cursor-pointer transition duration-200 hover:bg-black"
+                >
                     check Out
                 </button>
+            </div>
+            <div className="absolute bottom-0 left-0">
+                <Link to="/products" className="font-fancy flex gap-2">
+                    <ChevronLeft /> Continue Shopping
+                </Link>
             </div>
         </div>
     );
