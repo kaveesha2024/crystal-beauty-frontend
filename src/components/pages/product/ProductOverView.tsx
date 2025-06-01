@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import type { IAllProductsTypes } from "../../../utility/types/getProducts/getProducts";
+import { Heart, ShoppingBag, ShoppingCart } from "lucide-react";
 
 interface IProductOverViewPropsTypes {
     product: IAllProductsTypes;
@@ -7,17 +8,19 @@ interface IProductOverViewPropsTypes {
 
 const ProductOverView: React.FC<IProductOverViewPropsTypes> = ({ product }) => {
     const [currentPicture, setCurrentPicture] = useState(product?.images[0]);
-    console.log(product);
     return (
         <div className="mb-5 flex h-[90vh] w-full items-center justify-center gap-5 px-20 py-10">
-            <div className="h-[620px] w-[50%] bg-white pt-5">
+            <div className="relative h-[620px] w-[50%] bg-white pt-5">
+                <div className="absolute top-5 right-5">
+                    <Heart />
+                </div>
                 <div className="flex h-[450px] items-center justify-center">
                     <img src={currentPicture} className="h-[450px] w-[450px]" alt="image" />
                 </div>
                 <div className="flex h-[150px] items-center justify-center gap-5 overflow-x-auto">
                     {product.images?.map((image: string, index: number) => (
                         <img
-                            onClick={() => setCurrentPicture(image)}
+                            onClick={(): void => setCurrentPicture(image)}
                             className={
                                 "h-[120px] w-[120px] cursor-pointer object-cover transition duration-300 hover:scale-95" +
                                 (currentPicture === image ? " outline-accent outline-4" : "")
@@ -70,11 +73,11 @@ const ProductOverView: React.FC<IProductOverViewPropsTypes> = ({ product }) => {
                     </p>
                 </div>
                 <div className="flex justify-evenly gap-5">
-                    <button className="bg-accent text-primary w-[250px] cursor-pointer rounded-tl-2xl rounded-br-2xl py-2 font-bold tracking-widest uppercase transition duration-100 hover:scale-95">
-                        Add To Cart
+                    <button className="bg-accent active:bg-accent/70 text-primary flex w-[250px] cursor-pointer items-center justify-center gap-2 rounded-tl-2xl rounded-br-2xl py-2 font-bold tracking-widest uppercase transition duration-100 hover:scale-95">
+                        <ShoppingCart /> Add To Cart
                     </button>
-                    <button className="bg-accent text-primary w-[250px] cursor-pointer rounded-tl-2xl rounded-br-2xl py-2 font-bold tracking-widest uppercase transition duration-100 hover:scale-95">
-                        Buy Now
+                    <button className="bg-accent active:bg-accent/70 te text-primary flex w-[250px] cursor-pointer items-center justify-center gap-2 rounded-tl-2xl rounded-br-2xl py-2 font-bold tracking-widest uppercase transition duration-100 hover:scale-95">
+                        <ShoppingBag /> Buy Now
                     </button>
                 </div>
             </div>
