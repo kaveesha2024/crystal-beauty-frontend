@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
-import type { IAllProductsTypes } from "../../../utility/types/getProducts/getProducts";
 import type { ICartItemTypes } from "../../../utility/types/slices/cartSlice";
 import PlaceOrderSection from "./PlaceOrderSection.tsx";
 //ICartSliceInitialStateTypes
 interface ICheckoutPagePropsTypes {
-    checkedProducts: IAllProductsTypes[];
     usersProducts: ICartItemTypes[];
 }
 const CheckoutPage: React.FC<ICheckoutPagePropsTypes> = ({ usersProducts }) => {
