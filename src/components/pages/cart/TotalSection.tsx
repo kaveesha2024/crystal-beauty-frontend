@@ -32,7 +32,13 @@ const TotalSection: React.FC = () => {
                 </div>
                 <div className="h-[5px] w-full rounded-full bg-gradient-to-l from-green-600 to-[#A8EB6D]"></div>
                 <button
-                    onClick={() => navigate("/checkout")}
+                    onClick={() =>
+                        navigate("/checkout", {
+                            state: {
+                                products: cart,
+                            },
+                        })
+                    }
                     className="bg-secondary text-primary mt-3 h-[50px] w-full cursor-pointer transition duration-200 hover:bg-black"
                 >
                     check Out

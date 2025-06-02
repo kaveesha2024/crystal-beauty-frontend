@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
     --font-fancy: "Comfortaa", sans-serif;
-    --color-primary: #FFEDFA;
+    --color-primary: #faf2f2;
     --color-secondary: #1e1e19;
     --color-accent: #D50B8B;
 }
