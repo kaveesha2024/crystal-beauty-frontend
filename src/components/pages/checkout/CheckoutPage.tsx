@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import type { ICartItemTypes } from "../../../utility/types/slices/cartSlice";
 import PlaceOrderSection from "./PlaceOrderSection.tsx";
-//ICartSliceInitialStateTypes
-interface ICheckoutPagePropsTypes {
-    usersProducts: ICartItemTypes[];
-}
-const CheckoutPage: React.FC<ICheckoutPagePropsTypes> = ({ usersProducts }) => {
+import type { ICheckoutPagePropsTypes } from "../../../utility/types/checkout/checkout";
+
+const CheckoutPage: React.FC<ICheckoutPagePropsTypes> = ({
+    usersProducts,
+    orderDetails,
+    handleOrderDetails,
+}) => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -26,7 +28,7 @@ const CheckoutPage: React.FC<ICheckoutPagePropsTypes> = ({ usersProducts }) => {
                         <p>Total Price</p>
                     </div>
                     {usersProducts.length > 0 &&
-                        usersProducts.map((item, index: number) => (
+                        usersProducts.map((item: ICartItemTypes, index: number) => (
                             <div key={index} className="border-secondary/20 mb-5 w-full py-3">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-5">
@@ -52,7 +54,10 @@ const CheckoutPage: React.FC<ICheckoutPagePropsTypes> = ({ usersProducts }) => {
                             </div>
                         ))}
                 </div>
-                <PlaceOrderSection />
+                <PlaceOrderSection
+                    orderDetails={orderDetails}
+                    handleOrderDetails={handleOrderDetails}
+                />
             </div>
         </div>
     );

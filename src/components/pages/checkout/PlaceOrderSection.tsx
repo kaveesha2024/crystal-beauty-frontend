@@ -1,8 +1,12 @@
 import React from "react";
 import { FaPaypal, FaTruck } from "react-icons/fa";
 import { PiCreditCardFill } from "react-icons/pi";
+import type { IPlaceOrderSectionPropTypes } from "../../../utility/types/checkout/checkout";
 
-const PlaceOrderSection: React.FC = () => {
+const PlaceOrderSection: React.FC<IPlaceOrderSectionPropTypes> = ({
+    orderDetails,
+    handleOrderDetails,
+}) => {
     return (
         <div className="h-[600px] w-[500px] rounded-sm bg-gray-100 px-5 font-sans transition duration-300 hover:scale-105 hover:shadow-lg">
             <div className="flex h-full flex-col justify-between gap-5">
@@ -45,32 +49,38 @@ const PlaceOrderSection: React.FC = () => {
                             <input
                                 type="text"
                                 name="customerName"
+                                defaultValue={orderDetails.customerName}
+                                onChange={handleOrderDetails}
                                 className="rounded-xs bg-white p-1 tracking-widest"
                             />
                         </div>
                         <div className="flex flex-col gap-1">
                             <label
-                                htmlFor="customerName"
+                                htmlFor="phoneNumber"
                                 className="text-secondary/50 !text-sm tracking-widest uppercase"
                             >
                                 phone number (+94)
                             </label>
                             <input
                                 type="text"
-                                name="customerName"
+                                name="phoneNumber"
+                                defaultValue={orderDetails.phoneNumber}
+                                onChange={handleOrderDetails}
                                 className="rounded-xs bg-white p-1 tracking-widest"
                             />
                         </div>
                         <div className="flex flex-col gap-1">
                             <label
-                                htmlFor="customerName"
+                                htmlFor="address"
                                 className="text-secondary/50 !text-sm tracking-widest uppercase"
                             >
                                 Customer address
                             </label>
                             <input
                                 type="text"
-                                name="customerName"
+                                name="address"
+                                defaultValue={orderDetails.address}
+                                onChange={handleOrderDetails}
                                 className="rounded-xs bg-white p-1 tracking-widest"
                             />
                         </div>
