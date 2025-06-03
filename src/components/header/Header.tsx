@@ -1,5 +1,5 @@
 import React from "react";
-import { PhoneIcon, ShoppingCartIcon, HeartIcon, SearchIcon, User } from "lucide-react";
+import { PhoneIcon, ShoppingCartIcon, SearchIcon, User } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../store.ts";
@@ -52,7 +52,7 @@ export const Header: React.FC = () => {
                         </div>
                         <div className="flex items-center space-x-4">
                             <button
-                                onClick={() => {
+                                onClick={(): void => {
                                     if (isAuthenticated && role === "user") {
                                         navigate("/profile/" + userId);
                                     } else if (isAuthenticated && role === "admin") {
@@ -65,12 +65,7 @@ export const Header: React.FC = () => {
                             >
                                 <User size={24} />
                             </button>
-                            <button className="relative cursor-pointer p-2 transition-colors hover:text-[#D50B8B]">
-                                <HeartIcon size={24} />
-                                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#D50B8B] text-xs text-white">
-                                    0
-                                </span>
-                            </button>
+                            {/**/}
                             <Link
                                 to="/cart"
                                 className="relative cursor-pointer p-2 transition-colors hover:text-[#D50B8B]"

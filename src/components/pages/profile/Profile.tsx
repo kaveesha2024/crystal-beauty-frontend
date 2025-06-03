@@ -14,6 +14,7 @@ import VerifyEmail from "./VerifyEmail.tsx";
 import Swal from "sweetalert2";
 import { signOut } from "../../../utility/slices/AuthSlice.ts";
 import type { IAuthSliceInitialStateTypes } from "../../../utility/types/slices/authSlice";
+import ProfileSection from "./ProfileSection.tsx";
 
 const Profile: React.FC = () => {
     const navigate: NavigateFunction = useNavigate();
@@ -47,7 +48,7 @@ const Profile: React.FC = () => {
                     Verify Email Address
                 </Link>
                 <button
-                    className="hover:text-accent transition duration-100 hover:scale-95"
+                    className="hover:text-accent cursor-pointer transition duration-100 hover:scale-95"
                     onClick={() => {
                         Swal.fire({
                             title: "Are you sure?",
@@ -71,6 +72,7 @@ const Profile: React.FC = () => {
             <div>
                 <Routes>
                     <Route path="manage-profile" element={<ManageProfile />} />
+                    <Route path="/" element={<ProfileSection user={user} />} />
                     <Route path="verify_email" element={<VerifyEmail />} />
                 </Routes>
             </div>
