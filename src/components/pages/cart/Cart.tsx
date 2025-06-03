@@ -12,6 +12,7 @@ import {
 import { Minus, Plus } from "lucide-react";
 import TotalSection from "./TotalSection.tsx";
 import { type NavigateFunction, useNavigate } from "react-router-dom";
+import { IoIosArrowBack } from "react-icons/io";
 
 const Cart: React.FC = () => {
     const dispatch = useDispatch<dispatchType>();
@@ -106,7 +107,17 @@ const Cart: React.FC = () => {
                         </div>
                     </div>
                 ))}
-            {cart.length > 0 && <TotalSection />}
+            {cart.length > 0 ? (
+                <TotalSection />
+            ) : (
+                <button
+                    className="bg-accent text-primary justify active:bg-secondary mt-20 flex cursor-pointer items-center gap-3 rounded-md p-3"
+                    type="button"
+                    onClick={() => navigate("/products")}
+                >
+                    <IoIosArrowBack className="text-lg" /> Continue to Shopping
+                </button>
+            )}
         </div>
     );
 };
