@@ -18,43 +18,50 @@ const OrderTable: React.FC<IOrderTablePropTypes> = ({ allOrders, deleteOrder }) 
                     </tr>
                 </thead>
                 <tbody>
-                    {allOrders.length > 0
-                        ? allOrders.map((order: IAllOrdersTypes, index: number) => (
-                              <tr
-                                  key={index}
-                                  className="border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800"
-                              >
-                                  <td className="px-6 py-4">{order.orderId}</td>
-                                  <td className="px-6 py-4">{order.userId}</td>
-                                  <td className="px-6 py-4">{order.createdAt}</td>
-                                  <td className="px-6 py-4">{order.products.length}</td>
-                                  <td className="px-6 py-4">{order.totalPrice}</td>
-                                  {order.status === "pending" ? (
-                                      <td className="px-6 py-4 text-amber-400">Pending</td>
-                                  ) : order.status === "delivered" ? (
-                                      <td className="px-6 py-4 text-green-400">Delivered</td>
-                                  ) : (
-                                      <td className="px-6 py-4 text-red-600">Canceled</td>
-                                  )}
-
-                                  <td className="px-6 py-4">{order.address}</td>
-                                  <td className="px-6 py-4">{order.phoneNumber}</td>
-                                  <td className="px-6 py-4">{order.paymentMethod}</td>
-                                  <td className="px-6 py-4">{order.customerName}</td>
-                                  <td className="flex h-full items-center justify-center gap-1 px-6 py-4">
-                                      <button className="cursor-pointer text-sky-800 active:text-black">
-                                          <Pencil />
-                                      </button>
-                                      <button
-                                          onChange={() => deleteOrder(order.orderId)}
-                                          className="cursor-pointer text-red-800 active:text-black"
-                                      >
-                                          <DeleteIcon />
-                                      </button>
-                                  </td>
-                              </tr>
-                          ))
-                        : "No Orders"}
+                    {allOrders.length > 0 ? (
+                        allOrders.map((order: IAllOrdersTypes, index: number) => (
+                            <tr
+                                key={index}
+                                className="border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800"
+                            >
+                                <td className="px-6 py-4">{order.orderId}</td>
+                                <td className="px-6 py-4">{order.userId}</td>
+                                <td className="px-6 py-4">{order.createdAt}</td>
+                                <td className="px-6 py-4">{order.products.length}</td>
+                                <td className="px-6 py-4">{order.totalPrice}</td>
+                                <td className="px-6 py-4">
+                                    <span>
+                                        {order.status === "pending" ? (
+                                            <span className="text-amber-400">Pending</span>
+                                        ) : order.status === "delivered" ? (
+                                            <span className="text-green-400">Delivered</span>
+                                        ) : (
+                                            <span className="text-red-600">Cancelled</span>
+                                        )}
+                                    </span>
+                                </td>
+                                <td className="px-6 py-4">{order.address}</td>
+                                <td className="px-6 py-4">{order.phoneNumber}</td>
+                                <td className="px-6 py-4">{order.paymentMethod}</td>
+                                <td className="px-6 py-4">{order.customerName}</td>
+                                <td className="flex h-full items-center justify-center gap-1 px-6 py-4">
+                                    <button className="cursor-pointer text-sky-800 active:text-black">
+                                        <Pencil />
+                                    </button>
+                                    <button
+                                        onClick={() => deleteOrder(order.orderId)}
+                                        className="cursor-pointer text-red-800 active:text-black"
+                                    >
+                                        <DeleteIcon />
+                                    </button>
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr className="border-b border-gray-200 dark:border-gray-700 dark:bg-gray-800">
+                            <td className="px-6 py-4">No Orders were found !</td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
         </div>

@@ -20,6 +20,10 @@ const Orders: React.FC = () => {
     const getAllOrders = async (): Promise<void> => {
         try {
             const orders = await axios.get("/api/get_all_orders");
+            if (orders.data.message === "No orders found") {
+                setAllOrders([]);
+                return;
+            }
             if (orders.status === 200) {
                 setAllOrders(orders.data.message);
             }
