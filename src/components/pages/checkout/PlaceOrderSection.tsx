@@ -6,9 +6,10 @@ import type { IPlaceOrderSectionPropTypes } from "../../../utility/types/checkou
 const PlaceOrderSection: React.FC<IPlaceOrderSectionPropTypes> = ({
     orderDetails,
     handleOrderDetails,
+    placeOrder,
 }) => {
     return (
-        <div className="h-[600px] w-[500px] rounded-sm bg-gray-100 px-5 font-sans transition duration-300 hover:scale-105 hover:shadow-lg">
+        <div className="h-[600px] w-[500px] rounded-sm bg-gray-100 px-5 font-sans transition duration-300 hover:shadow-lg">
             <div className="flex h-full flex-col justify-between gap-5">
                 <h2 className="mt-5 text-3xl font-semibold tracking-wide">Payment Info.</h2>
 
@@ -87,7 +88,10 @@ const PlaceOrderSection: React.FC<IPlaceOrderSectionPropTypes> = ({
                     </div>
                 </form>
                 <div className="mb-4 flex justify-center">
-                    <button className="bg-secondary text-primary w-[90%] cursor-pointer rounded-xs py-2 font-bold tracking-wide uppercase active:bg-black active:text-white">
+                    <button
+                        onClick={placeOrder}
+                        className="bg-secondary text-primary w-[90%] cursor-pointer rounded-xs py-2 font-bold tracking-wide uppercase active:bg-black active:text-white"
+                    >
                         Place Order
                     </button>
                 </div>

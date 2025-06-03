@@ -18,7 +18,9 @@ const Cart: React.FC = () => {
     const navigate: NavigateFunction = useNavigate();
     const { cart } = useSelector((state: RootState) => state.cart);
     return (
-        <div className="mb-10 flex flex-col items-center justify-start px-5">
+        <div
+            className={`mb-10 flex flex-col items-center justify-start px-5 ${cart.length <= 0 && "h-[60vh]"}`}
+        >
             <h1 className="mt-10 text-center font-serif text-4xl font-semibold tracking-widest">
                 Your Cart (<span className="font-sans">{cart.length}</span> Items)
             </h1>
@@ -104,7 +106,7 @@ const Cart: React.FC = () => {
                         </div>
                     </div>
                 ))}
-            <TotalSection />
+            {cart.length > 0 && <TotalSection />}
         </div>
     );
 };

@@ -5,6 +5,7 @@ import setQuantityAction from "./actions/setQuantityAction.ts";
 import increaseQuantityAction from "./actions/increaseQuantityAction.ts";
 import deleteFromCartAction from "./actions/deleteFromCartAction.ts";
 import decreaseQuantityAction from "./actions/decreaseQuantityAction.ts";
+import clearCartAction from "./actions/clearCartAction.ts";
 
 const initialState: ICartSliceInitialStateTypes = {
     cart: [],
@@ -18,8 +19,15 @@ const cartSlice = createSlice({
         increaseQuantity: increaseQuantityAction(),
         decreaseQuantity: decreaseQuantityAction(),
         setQuantity: setQuantityAction(),
+        clearCart: clearCartAction(),
     },
 });
 export default cartSlice.reducer;
-export const { addToCart, deleteFromCart, increaseQuantity, decreaseQuantity, setQuantity } =
-    cartSlice.actions;
+export const {
+    addToCart,
+    deleteFromCart,
+    increaseQuantity,
+    decreaseQuantity,
+    setQuantity,
+    clearCart,
+} = cartSlice.actions;

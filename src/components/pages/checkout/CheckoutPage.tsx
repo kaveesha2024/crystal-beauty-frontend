@@ -7,6 +7,7 @@ const CheckoutPage: React.FC<ICheckoutPagePropsTypes> = ({
     usersProducts,
     orderDetails,
     handleOrderDetails,
+    placeOrder,
 }) => {
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -56,6 +57,7 @@ const CheckoutPage: React.FC<ICheckoutPagePropsTypes> = ({
                 </div>
                 <PlaceOrderSection
                     orderDetails={orderDetails}
+                    placeOrder={placeOrder}
                     handleOrderDetails={handleOrderDetails}
                 />
             </div>
