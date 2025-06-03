@@ -16,6 +16,8 @@ import AllProductsPage from "../../components/pages/product/AllProductsPage.tsx"
 import ProductOverViewPage from "../../components/pages/product/ProductOverViewPage.tsx";
 import Cart from "../../components/pages/cart/Cart.tsx";
 import Checkout from "../../components/pages/checkout/Checkout.tsx";
+import AboutUs from "../../components/pages/aboutUs/AboutUs.tsx";
+import ContactUs from "../../components/pages/contactUs/ContactUs.tsx";
 
 axios.defaults.baseURL = "http://localhost:8000";
 axios.interceptors.request.use(
@@ -41,6 +43,8 @@ const AppRoutes: React.FC = () => {
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/about_us" element={<AboutUs />} />
+                <Route path="/contact" element={<ContactUs />} />
                 <Route path="/products" element={<AllProductsPage />} />
                 <Route
                     path="/products/view_product_details/:id"

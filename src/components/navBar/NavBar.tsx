@@ -10,7 +10,7 @@ const NavBar: React.FC = () => {
             <Link className="hover:text-accent" to="/products">
                 Products
             </Link>
-            <Link className="hover:text-accent" to="/about-us">
+            <Link className="hover:text-accent" to="/about_us">
                 About Us
             </Link>
             <Link className="hover:text-accent" to="/contact">

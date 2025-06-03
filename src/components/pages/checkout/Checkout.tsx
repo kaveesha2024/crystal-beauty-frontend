@@ -8,6 +8,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { clearCart } from "../../../utility/slices/CartSlice/CartSlice.ts";
 import type { IAuthSliceInitialStateTypes } from "../../../utility/types/slices/authSlice";
+import toast from "react-hot-toast";
 
 const Checkout: React.FC = () => {
     const { products: usersProducts } = useLocation().state;
@@ -52,10 +53,13 @@ const Checkout: React.FC = () => {
             cancelButtonColor: "#1e1e19",
             confirmButtonText: "Place Order",
         }).then(async result => {
+            let toastId: string | undefined = undefined;
             if (result.isConfirmed) {
                 try {
+                    toastId = toast.loading("Loading...");
                     const response = await axios.post("/api/place_order", orderDetails);
                     if (response.data.status === 200) {
+                        toast.dismiss(toastId);
                         Swal.fire({
                             position: "center",
                             icon: "success",
@@ -67,6 +71,7 @@ const Checkout: React.FC = () => {
                         navigate("/products");
                     }
                 } catch (err) {
+                    toast.dismiss(toastId);
                     Swal.fire({
                         icon: "error",
                         title: "Oops...",
