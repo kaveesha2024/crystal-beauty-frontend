@@ -7,16 +7,17 @@ import type { IOrderDetailsTypes } from "../../../utility/types/checkout/checkou
 import axios from "axios";
 import Swal from "sweetalert2";
 import { clearCart } from "../../../utility/slices/CartSlice/CartSlice.ts";
+import type { IAuthSliceInitialStateTypes } from "../../../utility/types/slices/authSlice";
 
 const Checkout: React.FC = () => {
     const { products: usersProducts } = useLocation().state;
     const navigate: NavigateFunction = useNavigate();
     const dispatch = useDispatch<dispatchType>();
-    useEffect(() => {
+    useEffect((): void => {
         collectProductIds();
     }, []);
     const { firstName, phoneNumber, address } = useSelector(
-        (state: RootState) => state.authentication
+        (state: RootState): IAuthSliceInitialStateTypes => state.authentication
     );
     const [orderDetails, setOrderDetails] = useState<IOrderDetailsTypes>({
         products: [],
@@ -24,8 +25,7 @@ const Checkout: React.FC = () => {
         phoneNumber: phoneNumber,
         address: address,
     });
-    console.log(usersProducts);
-    const collectProductIds = () => {
+    const collectProductIds = (): void => {
         const productIds = [];
         for (let i = 0; i < usersProducts.length; i++) {
             productIds.push({
@@ -42,29 +42,41 @@ const Checkout: React.FC = () => {
             [name]: value,
         });
     };
-    const placeOrder = async () => {
-        try {
-            const response = await axios.post("/api/place_order", orderDetails);
-            if (response.data.status === 200) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Order placed successfully",
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-                dispatch(clearCart());
-                navigate("/products");
+    const placeOrder = async (): Promise<void> => {
+        Swal.fire({
+            title: "Are You Sure?",
+            text: "Do you want to place the order?",
+            icon: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#D50B8B",
+            cancelButtonColor: "#1e1e19",
+            confirmButtonText: "Place Order",
+        }).then(async result => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await axios.post("/api/place_order", orderDetails);
+                    if (response.data.status === 200) {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Order placed successfully",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                        dispatch(clearCart());
+                        navigate("/products");
+                    }
+                } catch (err) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        timer: 1500,
+                        text: "Something went wrong!",
+                        showConfirmButton: false,
+                    });
+                }
             }
-        } catch (err) {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                timer: 1500,
-                text: "Something went wrong!",
-                showConfirmButton: false,
-            });
-        }
+        });
     };
     return (
         <CheckoutPage

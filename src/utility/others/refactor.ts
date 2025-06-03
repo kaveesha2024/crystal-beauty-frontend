@@ -55,3 +55,16 @@ export const headings = [
 ];
 export const inputClassName =
     "w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-[#1e1e19] focus:ring-2 focus:ring-[#D50B8B] focus:outline-none";
+export const orderTableHeader = [
+    "Order ID",
+    "Customer ID",
+    "Order Date",
+    "Products",
+    "Total Price",
+    "Status",
+    "Address",
+    "Phone Number",
+    "Payment Method",
+    "Customer Name",
+    "Action",
+];

@@ -41,7 +41,6 @@ const AppRoutes: React.FC = () => {
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/cart" element={<Cart />} />
-                <Route path="/checkout" element={<Checkout />} />
                 <Route path="/products" element={<AllProductsPage />} />
                 <Route
                     path="/products/view_product_details/:id"
@@ -64,6 +63,10 @@ const AppRoutes: React.FC = () => {
                 <Route
                     path={"/profile/:userId/*"}
                     element={isAuthenticated ? <Profile /> : <Navigate to="/signin" />}
+                />
+                <Route
+                    path="/checkout"
+                    element={isAuthenticated ? <Checkout /> : <Navigate to="/signin" />}
                 />
             </Routes>
             <Footer />
