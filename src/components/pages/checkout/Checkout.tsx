@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 
 const Checkout: React.FC = () => {
     const { products: usersProducts } = useLocation().state;
+    console.log(usersProducts);
     const navigate: NavigateFunction = useNavigate();
     const dispatch = useDispatch<dispatchType>();
     useEffect((): void => {

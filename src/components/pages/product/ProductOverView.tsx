@@ -5,11 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import type { dispatchType, RootState } from "../../../../store.ts";
 import Swal from "sweetalert2";
 import type { IProductOverViewPropsTypes } from "../../../utility/types/productOverView/productOverView";
+import { type NavigateFunction, useNavigate } from "react-router-dom";
 
 const ProductOverView: React.FC<IProductOverViewPropsTypes> = ({ product }) => {
     const dispatch = useDispatch<dispatchType>();
     const { cart } = useSelector((state: RootState) => state.cart);
     const [currentPicture, setCurrentPicture] = useState<string>(product?.images[0]);
+    const navigate: NavigateFunction = useNavigate();
     const handleAddToCart = () => {
         const productInCart = cart.findIndex(
             productInCart => productInCart.productId === product.productId
@@ -102,7 +104,26 @@ const ProductOverView: React.FC<IProductOverViewPropsTypes> = ({ product }) => {
                     >
                         <ShoppingCart /> Add To Cart
                     </button>
-                    <button className="bg-accent active:bg-accent/70 te text-primary flex w-[250px] cursor-pointer items-center justify-center gap-2 rounded-tl-2xl rounded-br-2xl py-2 font-bold tracking-widest uppercase transition duration-100 hover:scale-95">
+                    <button
+                        onClick={() =>
+                            navigate("/checkout", {
+                                state: {
+                                    products: [
+                                        {
+                                            productId: product.productId,
+                                            image: product.images[0],
+                                            productName: product.productName,
+                                            quantity: 1,
+                                            stock: product.stock,
+                                            total: product.price,
+                                            unitPrice: product.price,
+                                        },
+                                    ],
+                                },
+                            })
+                        }
+                        className="bg-accent active:bg-accent/70 te text-primary flex w-[250px] cursor-pointer items-center justify-center gap-2 rounded-tl-2xl rounded-br-2xl py-2 font-bold tracking-widest uppercase transition duration-100 hover:scale-95"
+                    >
                         <ShoppingBag /> Buy Now
                     </button>
                 </div>

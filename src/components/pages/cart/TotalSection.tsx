@@ -7,6 +7,7 @@ import { ChevronLeft } from "lucide-react";
 
 const TotalSection: React.FC = () => {
     const { cart } = useSelector((state: RootState) => state.cart);
+    console.log(cart);
     const navigate: NavigateFunction = useNavigate();
     const subtotal = cart.reduce((acc, item) => acc + item.unitPrice * item.quantity, 0);
     const total = subtotal + 300;

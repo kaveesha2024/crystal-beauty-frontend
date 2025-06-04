@@ -46,7 +46,7 @@ const CheckoutPage: React.FC<ICheckoutPagePropsTypes> = ({
                                         LKR {item.unitPrice.toFixed(2)}
                                     </div>
                                     <div className="ml-3 flex h-full w-[150px] items-center justify-center">
-                                        LKR {item.quantity}
+                                        {item.quantity}
                                     </div>
                                     <div className="ml-3 flex h-full w-[150px] items-center justify-center">
                                         LKR {item.quantity * item.unitPrice}
