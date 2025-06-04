@@ -7,15 +7,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import type { ICurrentUserInformationTypes } from "../../../utility/types/profile/profile";
 
-export interface ICurrentUserInformationTypes {
-    firstName: string;
-    lastName: string;
-    email: string;
-    address: string;
-    phoneNumber: string;
-    profilePicture: string | unknown;
-}
 const ManageProfile: React.FC = () => {
     const navigate = useNavigate();
     const user = useSelector((state: RootState) => state.authentication);

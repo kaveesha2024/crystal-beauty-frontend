@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface ICurrentUserInformationTypes {
     firstName: string;
     lastName: string;
@@ -8,4 +10,11 @@ export interface ICurrentUserInformationTypes {
     isVerified: boolean;
     role: string;
     email: string;
+}
+export interface UpdateUserFormPropTypes {
+    currentUserInformation: ICurrentUserInformationTypes;
+    handleUpdateUserFormInputDetails: (
+        event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    ) => void;
+    handleUserUpdateFormSubmit: (image: File | null) => void;
 }

@@ -7,8 +7,6 @@ import type { IAllOrdersTypes } from "../../../utility/types/order/order";
 import Swal from "sweetalert2";
 
 const Orders: React.FC = () => {
-    //no data need to be passed for all orders
-    //pass userId for selected user's orders
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [allOrders, setAllOrders] = useState<IAllOrdersTypes[]>([]);
     useEffect(() => {

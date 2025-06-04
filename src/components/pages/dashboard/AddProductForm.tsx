@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { PackagePlus } from "lucide-react";
 import AddProductHeading from "../../../utility/reUsable/AddProductHeading.tsx";
-interface IAddProductFormPropTypes {
-    handleAddProductInputDetails: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    handleAddProductSubmit: (image: FileList | []) => void;
-}
+import type { IAddProductFormPropTypes } from "../../../utility/types/addProduct/addProduct";
+
 const AddProductForm: React.FC<IAddProductFormPropTypes> = ({
     handleAddProductInputDetails,
     handleAddProductSubmit,

@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import type { ICurrentUserInformationTypes } from "../../../utility/types/updateUser/updateUser";
+import type {
+    UpdateUserFormPropTypes,
+} from "../../../utility/types/updateUser/updateUser";
 
-interface UpdateUserFormPropTypes {
-    currentUserInformation: ICurrentUserInformationTypes;
-    handleUpdateUserFormInputDetails: (
-        event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-    ) => void;
-    handleUserUpdateFormSubmit: (image: File | null) => void;
-}
+
 const UpdateUserForm: React.FC<UpdateUserFormPropTypes> = ({
     currentUserInformation,
     handleUpdateUserFormInputDetails,

@@ -1,13 +1,9 @@
 import React from "react";
-import type { IAuthSliceInitialStateTypes } from "../../../utility/types/slices/authSlice";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../../store.ts";
 import type { ICartSliceInitialStateTypes } from "../../../utility/types/slices/cartSlice";
 import { type NavigateFunction, useNavigate } from "react-router-dom";
-
-interface IProfileSectionPropsTypes {
-    user: IAuthSliceInitialStateTypes;
-}
+import type { IProfileSectionPropsTypes } from "../../../utility/types/profile/profile";
 
 const ProfileSection: React.FC<IProfileSectionPropsTypes> = ({ user }) => {
     const navigate: NavigateFunction = useNavigate();

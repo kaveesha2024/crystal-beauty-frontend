@@ -1,17 +1,8 @@
 import React from "react";
 import { inputClassName } from "../../../utility/others/refactor.ts";
 import { SendIcon } from "lucide-react";
+import type { IVerifyEmailFormPropTypes } from "../../../utility/types/verify/verify";
 
-interface IVerifyEmailFormPropTypes {
-    sendOtp: () => void;
-    handleInputField: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    message: string;
-    email: string;
-    isOtpSend: boolean;
-    setIsOtpSend: (value: boolean) => void;
-    verifyEmailAddress: () => void;
-    handleOtpInputData: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
 const VerifyEmailForm: React.FC<IVerifyEmailFormPropTypes> = ({
     sendOtp,
     message,

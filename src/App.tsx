@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import type { RootState } from "../store.ts";
 import toast from "react-hot-toast";
 import { Hero } from "./components/hero/Hero.tsx";
+import HomeSection from "./components/pages/home/HomeSection.tsx";
 
 const App: React.FC = () => {
     const authState = useSelector((state: RootState) => state.authentication);
@@ -12,6 +13,7 @@ const App: React.FC = () => {
     return (
         <div>
             <Hero />
+            <HomeSection />
         </div>
     );
 };

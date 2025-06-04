@@ -5,10 +5,8 @@ import { headings } from "../../../utility/others/refactor.ts";
 import { Pencil, Trash } from "lucide-react";
 import { type NavigateFunction, useNavigate } from "react-router-dom";
 import LoadingTableRow from "../../../utility/reUsable/LoadingTableRow.tsx";
-interface IProductTablePropsTypes {
-    allProducts: IAllProductsTypes[];
-    deleteProduct: (productId: string) => void;
-}
+import type { IProductTablePropsTypes } from "../../../utility/types/addProduct/addProduct";
+
 const ProductTable: React.FC<IProductTablePropsTypes> = ({ allProducts, deleteProduct }) => {
     const navigate: NavigateFunction = useNavigate();
     return (
