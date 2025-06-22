@@ -24,15 +24,21 @@ const OrderTable: React.FC<IOrderTablePropTypes> = ({ allOrders, handleOrderPopu
                                 <td className="px-6 py-4">{order.orderId}</td>
                                 <td className="px-6 py-4">{order.customerName}</td>
                                 <td className="px-6 py-4">{order.products.length}</td>
-                                <td className="px-6 py-4">LKR {order.totalPrice.toFixed(2)}</td>
+                                <td className="px-6 py-4">
+                                    Rs. {order.totalPrice.toLocaleString()}
+                                </td>
                                 <td className="px-6 py-4">
                                     <span>
                                         {order.status === "pending" ? (
                                             <span className="text-amber-400">Pending</span>
                                         ) : order.status === "delivered" ? (
                                             <span className="text-green-400">Delivered</span>
-                                        ) : (
+                                        ) : order.status === "cancelled" ? (
                                             <span className="text-red-600">Cancelled</span>
+                                        ) : order.status === "processing" ? (
+                                            <span className="text-blue-600">Processing</span>
+                                        ) : (
+                                            <span className="text-red-600">Returned</span>
                                         )}
                                     </span>
                                 </td>

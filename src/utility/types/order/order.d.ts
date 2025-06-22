@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface IOrderProductsTypes {
     price: number;
     productId: string;
@@ -29,6 +31,7 @@ export interface OrderPopupWindowPropTypes {
     setIsModelOpen: (isModalOpen: boolean) => void;
     deleteOrder: (orderId: string) => void;
     onDeleteOrder?: (orderId: string) => void;
+    editOrderStatus: (orderId: string, orderStatus: string) => void;
     onStatusChange?: (orderId: string, status: string) => void;
 }
 export interface IOrderStatusOptionsTypes {

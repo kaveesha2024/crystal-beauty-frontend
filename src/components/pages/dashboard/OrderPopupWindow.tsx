@@ -9,6 +9,7 @@ const OrderPopupWindow: React.FC<OrderPopupWindowPropTypes> = ({
     setIsModelOpen,
     deleteOrder,
     onStatusChange,
+    editOrderStatus,
 }) => {
     const [status, setStatus] = useState(order?.status ?? "");
     if (!order) {
@@ -17,6 +18,7 @@ const OrderPopupWindow: React.FC<OrderPopupWindowPropTypes> = ({
     const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setStatus(e.target.value);
         if (onStatusChange) onStatusChange(order.orderId, e.target.value);
+        editOrderStatus(order.orderId, e.target.value);
     };
     const selectedOption = orderStatusOptions.find(
         (opt: IOrderStatusOptionsTypes): boolean => opt.value === status
@@ -30,7 +32,7 @@ const OrderPopupWindow: React.FC<OrderPopupWindowPropTypes> = ({
                     <span className="font-medium">Order ID:</span> {order.orderId}
                 </p>
                 <div className="my-2 flex items-center">
-                    <span className="font-medium">Status:</span>
+                    <span className="font-medium">Status: </span>
                     <div className="relative ml-2">
                         <select
                             className={`cursor-pointer appearance-none rounded-lg border-2 bg-white px-4 py-1 pr-8 transition focus:ring-2 focus:outline-none ${statusRing[status as keyof typeof statusRing] || "border-gray-300"} ${selectedOption?.color ?? ""}`}
@@ -52,7 +54,7 @@ const OrderPopupWindow: React.FC<OrderPopupWindowPropTypes> = ({
                     </div>
                 </div>
                 <p>
-                    <span className="font-medium">Total Price:</span>
+                    <span className="font-medium">Total Price: </span>
                     <span className="font-bold">
                         Rs.
                         {order.totalPrice.toLocaleString()}
@@ -104,13 +106,13 @@ const OrderPopupWindow: React.FC<OrderPopupWindowPropTypes> = ({
             </div>
             <div className="mt-6 flex justify-between">
                 <button
-                    onClick={() => deleteOrder(order.orderId)}
+                    onClick={(): void => deleteOrder(order.orderId)}
                     className="hover:bg-opacity-80 cursor-pointer rounded bg-red-500 px-4 py-2 text-white transition"
                 >
                     Delete Order
                 </button>
                 <button
-                    onClick={() => setIsModelOpen(false)}
+                    onClick={(): void => setIsModelOpen(false)}
                     className="hover:bg-opacity-80 cursor-pointer rounded bg-[#D50B8B] px-4 py-2 text-white transition"
                 >
                     Close
