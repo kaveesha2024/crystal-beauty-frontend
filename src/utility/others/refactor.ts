@@ -57,14 +57,23 @@ export const inputClassName =
     "w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-[#1e1e19] focus:ring-2 focus:ring-[#D50B8B] focus:outline-none";
 export const orderTableHeader = [
     "Order ID",
-    "Customer ID",
-    "Order Date",
-    "Products",
+    "Customer Name",
+    "Product Count",
     "Total Price",
     "Status",
-    "Address",
-    "Phone Number",
-    "Payment Method",
-    "Customer Name",
-    "Action",
 ];
+export const orderStatusOptions = [
+    { value: "pending", color: "text-yellow-800" },
+    { value: "processing", color: "bg-blue-100 text-blue-800" },
+    { value: "delivered", color: "bg-green-100 text-green-800" },
+    { value: "returned", color: "bg-purple-100 text-red-800" },
+    { value: "cancelled", color: "bg-red-100 text-red-800" },
+];
+
+export const statusRing = {
+    pending: "border-yellow-400 shadow-yellow-100",
+    processing: "border-blue-400 shadow-blue-100",
+    returned: "border-red-400 shadow-red-100",
+    delivered: "border-green-400 shadow-green-100",
+    cancelled: "border-red-400 shadow-red-100",
+};

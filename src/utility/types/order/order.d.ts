@@ -22,5 +22,16 @@ export interface IAllOrdersTypes {
 }
 export interface IOrderTablePropTypes {
     allOrders: IAllOrdersTypes[];
+    handleOrderPopupWindow: (order: IAllOrdersTypes) => void;
+}
+export interface OrderPopupWindowPropTypes {
+    selectedOrderInformation: IAllOrdersTypes | undefined;
+    setIsModelOpen: (isModalOpen: boolean) => void;
     deleteOrder: (orderId: string) => void;
+    onDeleteOrder?: (orderId: string) => void;
+    onStatusChange?: (orderId: string, status: string) => void;
+}
+export interface IOrderStatusOptionsTypes {
+    value: string;
+    color: string;
 }
