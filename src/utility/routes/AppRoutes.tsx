@@ -19,7 +19,7 @@ import Checkout from "../../components/pages/checkout/Checkout.tsx";
 import AboutUs from "../../components/pages/aboutUs/AboutUs.tsx";
 import ContactUs from "../../components/pages/contactUs/ContactUs.tsx";
 
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = "http://192.168.1.6:8000";
 axios.interceptors.request.use(
     function (config) {
         let token = store.getState().authentication.token;
