@@ -52,8 +52,11 @@ const OrderPopupWindow: React.FC<OrderPopupWindowPropTypes> = ({
                     </div>
                 </div>
                 <p>
-                    <span className="font-medium">Total Price:</span> Rs.
-                    {order.totalPrice.toLocaleString()}
+                    <span className="font-medium">Total Price:</span>
+                    <span className="font-bold">
+                        Rs.
+                        {order.totalPrice.toLocaleString()}
+                    </span>
                 </p>
                 <p>
                     <span className="font-medium">Payment Method:</span> {order.paymentMethod}
