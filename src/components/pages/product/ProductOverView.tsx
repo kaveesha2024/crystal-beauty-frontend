@@ -12,7 +12,7 @@ const ProductOverView: React.FC<IProductOverViewPropsTypes> = ({ product }) => {
     const { cart } = useSelector((state: RootState) => state.cart);
     const [currentPicture, setCurrentPicture] = useState<string>(product?.images[0]);
     const navigate: NavigateFunction = useNavigate();
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     const handleAddToCart = (): void => {
         const productInCart = cart.findIndex(
             productInCart => productInCart.productId === product.productId
