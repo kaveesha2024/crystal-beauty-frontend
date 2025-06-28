@@ -9,6 +9,7 @@ import {
     NavigationIcon,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import GoogleSignUp from "../google/GoogleSignUp.tsx";
 export interface SignupFormProps {
     handleSignupInputFields: (event: React.ChangeEvent<HTMLInputElement>) => void;
     handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -206,6 +207,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({
                         Create Account
                     </button>
                 </form>
+                <GoogleSignUp />
                 <p className="mt-6 text-center text-sm text-gray-600">
                     Already have an account?
                     <Link to="/signin" className="font-medium text-[#D50B8B] hover:underline">

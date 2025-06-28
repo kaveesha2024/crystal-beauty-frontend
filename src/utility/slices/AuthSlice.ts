@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import type { IAuthSliceInitialStateTypes } from "../types/slices/authSlice";
 import signInApi from "../apiCalls/SignInApi.ts";
 import setUserState from "../commonFunctions/setAuthState/setAuthState.ts";
+import GoogleSignUpApi from "../apiCalls/GoogleSignUpApi.ts";
 
 const initialState: IAuthSliceInitialStateTypes = {
     isLoading: false,
@@ -69,6 +70,22 @@ const authenticationSlice = createSlice({
             state.isLoading = false;
         });
         builder.addCase(signInApi.rejected, (state: IAuthSliceInitialStateTypes) => {
+            state.isLoading = false;
+            state.isAuthenticated = false;
+            toast.error("Error Occurred");
+        });
+        builder.addCase(GoogleSignUpApi.pending, (state: IAuthSliceInitialStateTypes) => {
+            state.isLoading = true;
+        });
+        builder.addCase(
+            GoogleSignUpApi.fulfilled,
+            (state: IAuthSliceInitialStateTypes, { payload }) => {
+                state.isLoading = false;
+                state.isAuthenticated = true;
+                setUserState(state, payload);
+            }
+        );
+        builder.addCase(GoogleSignUpApi.rejected, (state: IAuthSliceInitialStateTypes) => {
             state.isLoading = false;
             state.isAuthenticated = false;
             toast.error("Error Occurred");
