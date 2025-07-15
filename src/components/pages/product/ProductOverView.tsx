@@ -53,7 +53,7 @@ const ProductOverView: React.FC<IProductOverViewPropsTypes> = ({ product }) => {
                         <img
                             onClick={() => setCurrentPicture(image)}
                             className={`h-[80px] w-[80px] cursor-pointer object-cover transition duration-300 hover:scale-95 md:h-[120px] md:w-[120px] ${
-                                currentPicture === image ? "outline-accent outline outline-2" : ""
+                                currentPicture === image ? "outline-accent outline-2" : ""
                             }`}
                             key={index}
                             src={image}
