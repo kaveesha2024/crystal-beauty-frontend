@@ -75,10 +75,10 @@ const ProfileSection: React.FC<IProfileSectionPropsTypes> = ({ user }) => {
                             onClick={() => navigate("/my_orders")}
                             className="cursor-pointer rounded-lg bg-gray-50 p-3 transition hover:bg-gray-100 active:bg-gray-200 sm:p-4"
                         >
-                            <h3 className="text-sm font-semibold text-gray-700 sm:text-base">
-                                Orders
-                            </h3>
-                            <p className="text-xl font-bold text-blue-600 sm:text-2xl">0 Orders</p>
+                            {/*<h3 className="text-sm font-semibold text-gray-700 sm:text-base">*/}
+                            {/*    Orders*/}
+                            {/*</h3>*/}
+                            <p className="text-xl font-bold text-blue-600 sm:text-2xl">My Orders</p>
                         </div>
                     </div>
                 </div>

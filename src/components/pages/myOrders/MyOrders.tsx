@@ -1,89 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { type NavigateFunction, useNavigate } from "react-router-dom";
-
-// Define types for better TypeScript support
-type OrderProduct = {
-    productId: string;
-    quantity: number;
-    price: number;
-    productName: string;
-};
-
-type Order = {
-    orderId: string;
-    products: OrderProduct[];
-    totalPrice: number;
-    status: "pending" | "delivered" | "cancelled" | "returned" | "processing";
-    address: string;
-    phoneNumber: string;
-    customerName: string;
-    paymentMethod: "cashOnDelivery" | "creditCard" | "paypal";
-    createdAt: string; // Added for order date
-};
-
+import axios from "axios";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../../store.ts";
+import type { IAllOrdersTypes, IOrderProductsTypes } from "../../../utility/types/order/order";
+import toast from "react-hot-toast";
 const MyOrders: React.FC = () => {
     const navigate: NavigateFunction = useNavigate();
+    const { userId } = useSelector((state: RootState) => state.authentication);
+    const [isLoading, setIsLoading] = useState(true);
+    const [allOrders, setAllOrders] = useState<IAllOrdersTypes[]>([]);
+    console.log(allOrders);
+    useEffect(() => {
+        if (isLoading) {
+            getOrders();
+            setIsLoading(false);
+        }
+    }, [isLoading]);
     window.scrollTo(0, 0);
-    // Sample data - replace with your actual data fetching logic
-    const orders: Order[] = [
-        {
-            orderId: "ORD-12345",
-            products: [
-                {
-                    productId: "PROD-001",
-                    productName: "Rose Quartz Facial Serum",
-                    price: 24.99,
-                    quantity: 2,
-                },
-                {
-                    productId: "PROD-002",
-                    productName: "Hyaluronic Acid Moisturizer",
-                    price: 19.99,
-                    quantity: 1,
-                },
-            ],
-            totalPrice: 69.97,
-            status: "delivered",
-            address: "123 Beauty St, Cosmetic City",
-            phoneNumber: "+1234567890",
-            customerName: "Jane Doe",
-            paymentMethod: "creditCard",
-            createdAt: "2023-05-15",
-        },
-        {
-            orderId: "ORD-12346",
-            products: [
-                {
-                    productId: "PROD-003",
-                    productName: "Vitamin C Brightening Cream",
-                    price: 29.99,
-                    quantity: 1,
-                },
-            ],
-            totalPrice: 29.99,
-            status: "processing",
-            address: "123 Beauty St, Cosmetic City",
-            phoneNumber: "+1234567890",
-            customerName: "Jane Doe",
-            paymentMethod: "paypal",
-            createdAt: "2023-06-20",
-        },
-    ];
-
-    // Status colors mapping
-    const statusColors = {
-        pending: "bg-yellow-100 text-yellow-800",
-        delivered: "bg-green-100 text-green-800",
-        cancelled: "bg-red-100 text-red-800",
-        returned: "bg-purple-100 text-purple-800",
-        processing: "bg-blue-100 text-blue-800",
+    const getOrders = async (): Promise<void> => {
+        try {
+            const response = await axios.get("/api/get_order_by_user_id/?userId=" + userId);
+            if (response.data.status === 200) {
+                setAllOrders(response.data.message);
+                return;
+            }
+            toast.error(response.data.message);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+    const statusColor = (status: string): string => {
+        if (status === "pending") {
+            return "bg-yellow-100 text-yellow-800";
+        }
+        if (status === "delivered") {
+            return "bg-green-100 text-green-800";
+        }
+        if (status === "cancelled") {
+            return "bg-red-100 text-red-800";
+        }
+        if (status === "returned") {
+            return "bg-purple-100 text-purple-800";
+        }
+        return "bg-blue-100 text-blue-800";
     };
 
-    // Payment method icons
-    const paymentIcons = {
-        cashOnDelivery: "💵",
-        creditCard: "💳",
-        paypal: "🔵",
+    const paymentIcon = (method: string): "💵" | "💳" | "🔵" => {
+        if (method === "cashOnDelivery") {
+            return "💵";
+        }
+        if (method === "creditCard") {
+            return "💳";
+        }
+        return "🔵";
     };
 
     return (
@@ -113,7 +83,7 @@ const MyOrders: React.FC = () => {
                 </div>
 
                 <div className="space-y-6">
-                    {orders.length === 0 ? (
+                    {allOrders.length === 0 ? (
                         <div className="py-12 text-center">
                             <p className="text-lg text-gray-500">
                                 You haven't placed any orders yet.
@@ -123,7 +93,7 @@ const MyOrders: React.FC = () => {
                             </button>
                         </div>
                     ) : (
-                        orders.map(order => (
+                        allOrders.map((order: IAllOrdersTypes) => (
                             <div
                                 key={order.orderId}
                                 className="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition duration-200 hover:shadow-md"
@@ -133,7 +103,7 @@ const MyOrders: React.FC = () => {
                                     <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                                         <div>
                                             <h3 className="text-lg font-semibold text-gray-900">
-                                                Order #{order.orderId}
+                                                Order {order.orderId}
                                             </h3>
                                             <p className="text-sm text-gray-500">
                                                 Placed on{" "}
@@ -142,13 +112,14 @@ const MyOrders: React.FC = () => {
                                         </div>
                                         <div className="flex items-center gap-3">
                                             <span
-                                                className={`rounded-full px-3 py-1 text-xs font-medium ${statusColors[order.status]}`}
+                                                className={`rounded-full px-3 py-1 text-xs font-medium ${statusColor(order.status)}`}
                                             >
                                                 {order.status.charAt(0).toUpperCase() +
                                                     order.status.slice(1)}
                                             </span>
                                             <span className="rounded bg-gray-100 px-2 py-1 text-sm">
-                                                {paymentIcons[order.paymentMethod]}{" "}
+                                                {/*{paymentIcons[order.paymentMethod]}*/}
+                                                {paymentIcon(order.paymentMethod)}
                                                 {order.paymentMethod}
                                             </span>
                                         </div>
@@ -160,31 +131,36 @@ const MyOrders: React.FC = () => {
                                             Products
                                         </h4>
                                         <ul className="space-y-3">
-                                            {order.products.map(product => (
+                                            {order.products.map((product: IOrderProductsTypes) => (
                                                 <li
                                                     key={product.productId}
                                                     className="flex items-start"
                                                 >
-                                                    <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-gray-100">
-                                                        {/* Product image placeholder - replace with actual image */}
-                                                        <div className="flex h-full w-full items-center justify-center text-gray-400">
-                                                            🧴
-                                                        </div>
-                                                    </div>
+                                                    {/*<div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-gray-100">*/}
+                                                    {/*    /!* Product image placeholder - replace with actual image *!/*/}
+                                                    {/*    <div className="flex h-full w-full items-center justify-center text-gray-400">*/}
+                                                    {/*        🧴*/}
+                                                    {/*    </div>*/}
+                                                    {/*</div>*/}
                                                     <div className="ml-4 flex-1">
                                                         <h5 className="text-sm font-medium text-gray-900">
                                                             {product.productName}
                                                         </h5>
                                                         <p className="text-sm text-gray-500">
-                                                            Qty: {product.quantity} × $
-                                                            {product.price.toFixed(2)}
+                                                            Qty: {product.quantity} × Rs.{" "}
+                                                            <span>
+                                                                {product.price.toLocaleString()}/=
+                                                            </span>
                                                         </p>
                                                     </div>
                                                     <div className="text-sm font-medium text-gray-900">
-                                                        $
-                                                        {(product.price * product.quantity).toFixed(
-                                                            2
-                                                        )}
+                                                        Rs.{" "}
+                                                        <span>
+                                                            {(
+                                                                product.price * product.quantity
+                                                            ).toLocaleString()}
+                                                        </span>
+                                                        /=
                                                     </div>
                                                 </li>
                                             ))}
@@ -211,7 +187,7 @@ const MyOrders: React.FC = () => {
                                             <div className="text-right">
                                                 <p className="text-sm text-gray-500">Total</p>
                                                 <p className="text-xl font-bold text-[#D50B8B]">
-                                                    ${order.totalPrice.toFixed(2)}
+                                                    Rs. {order.totalPrice.toLocaleString()}/=
                                                 </p>
                                             </div>
                                         </div>
@@ -219,14 +195,23 @@ const MyOrders: React.FC = () => {
 
                                     {/* Order actions */}
                                     <div className="mt-4 flex flex-wrap gap-3 border-t border-gray-100 pt-4">
-                                        <button className="rounded-lg border border-[#D50B8B] px-3 py-1.5 text-sm font-medium text-[#D50B8B] transition hover:bg-[#D50B8B]/5 hover:text-[#C40A7D]">
+                                        <button
+                                            disabled={true}
+                                            className="cursor-not-allowed rounded-lg border border-[#D50B8B] px-3 py-1.5 text-sm font-medium text-[#D50B8B] transition hover:bg-[#D50B8B]/5 hover:text-[#C40A7D]"
+                                        >
                                             Track Order
                                         </button>
-                                        <button className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 hover:text-gray-900">
+                                        <button
+                                            disabled={true}
+                                            className="cursor-not-allowed rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 hover:text-gray-900"
+                                        >
                                             View Details
                                         </button>
                                         {order.status === "delivered" && (
-                                            <button className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 hover:text-gray-900">
+                                            <button
+                                                disabled={true}
+                                                className="cursor-not-allowed rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 hover:text-gray-900"
+                                            >
                                                 Buy Again
                                             </button>
                                         )}
