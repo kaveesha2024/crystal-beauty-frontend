@@ -68,7 +68,7 @@ const AnalyticsSection: React.FC<IAnalyticsSectionPropTypes> = ({
                                     <img
                                         src={user.profilePicture}
                                         alt={user.firstName}
-                                        className="h-full w-full object-cover rounded-full"
+                                        className="h-full w-full rounded-full object-cover"
                                     />
                                 </div>
                                 <div>
@@ -90,9 +90,14 @@ const AnalyticsSection: React.FC<IAnalyticsSectionPropTypes> = ({
                             >
                                 <div>
                                     <p className="font-medium">{order.orderId}</p>
-                                    <p className="text-sm text-gray-500">{order.products.length} items - Rs. {order.totalPrice.toLocaleString()}</p>
+                                    <p className="text-sm text-gray-500">
+                                        {order.products.length} items - Rs.{" "}
+                                        {order.totalPrice.toLocaleString()}
+                                    </p>
                                 </div>
-                                <span className={`rounded-full px-2 py-1 text-xs font-semibold ${order.status === "pending" ? "bg-yellow-100 text-yellow-800" : order.status === "delivered" ? "bg-green-100 text-green-800" : order.status === "processing" ? "bg-blue-100 text-blue-800" : "bg-red-100 text-red-800"}`}>
+                                <span
+                                    className={`rounded-full px-2 py-1 text-xs font-semibold ${order.status === "pending" ? "bg-yellow-100 text-yellow-800" : order.status === "delivered" ? "bg-green-100 text-green-800" : order.status === "processing" ? "bg-blue-100 text-blue-800" : "bg-red-100 text-red-800"}`}
+                                >
                                     {order.status}
                                 </span>
                             </div>
@@ -112,12 +117,14 @@ const AnalyticsSection: React.FC<IAnalyticsSectionPropTypes> = ({
                                     <img
                                         src={product.images[0]}
                                         alt={product.productName}
-                                        className="h-full w-full object-cover rounded-md"
+                                        className="h-full w-full rounded-md object-cover"
                                     />
                                 </div>
                                 <div>
                                     <p className="font-medium">{product.productName}</p>
-                                    <p className="text-sm text-gray-500">{product.price}</p>
+                                    <p className="text-sm text-gray-500">
+                                        Rs. {product.price.toLocaleString()}/=
+                                    </p>
                                 </div>
                             </div>
                         ))}
