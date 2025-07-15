@@ -129,7 +129,17 @@ const ProductOverView: React.FC<IProductOverViewPropsTypes> = ({ product }) => {
                         onClick={() =>
                             navigate("/checkout", {
                                 state: {
-                                    /* ... */
+                                    products: [
+                                        {
+                                            productId: product.productId,
+                                            image: product.images[0],
+                                            productName: product.productName,
+                                            quantity: 1,
+                                            stock: product.stock,
+                                            total: product.price,
+                                            unitPrice: product.price,
+                                        },
+                                    ],
                                 },
                             })
                         }

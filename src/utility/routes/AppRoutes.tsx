@@ -18,6 +18,7 @@ import Cart from "../../components/pages/cart/Cart.tsx";
 import Checkout from "../../components/pages/checkout/Checkout.tsx";
 import AboutUs from "../../components/pages/aboutUs/AboutUs.tsx";
 import ContactUs from "../../components/pages/contactUs/ContactUs.tsx";
+import MyOrders from "../../components/pages/myOrders/MyOrders.tsx";
 
 axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}:${import.meta.env.VITE_API_PORT}`;
 axios.interceptors.request.use(
@@ -72,6 +73,7 @@ const AppRoutes: React.FC = () => {
                     path="/checkout"
                     element={isAuthenticated ? <Checkout /> : <Navigate to="/signin" />}
                 />
+                <Route path="/my_orders" element={<MyOrders />} />
             </Routes>
             <Footer />
         </div>

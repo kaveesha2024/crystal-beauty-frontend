@@ -36,7 +36,6 @@ const Analytics: React.FC = () => {
                     latestOrders: response.data.latestOrders,
                     latestProducts: response.data.latestProducts,
                 }));
-                console.log(analytics);
                 return;
             }
             toast.error(response.data.message);
