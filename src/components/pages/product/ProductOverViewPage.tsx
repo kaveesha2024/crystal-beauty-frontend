@@ -5,6 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import ProductOverView from "./ProductOverView.tsx";
+import Comments from "../comments/Comments.tsx";
 
 const ProductOverViewPage: React.FC = () => {
     const productId: string | undefined = useParams().id;
@@ -40,7 +41,10 @@ const ProductOverViewPage: React.FC = () => {
             ) : product === null ? (
                 <div>Product not found</div>
             ) : (
-                <ProductOverView product={product} />
+                <>
+                    <ProductOverView product={product} />
+                    <Comments />
+                </>
             )}
         </div>
     );
