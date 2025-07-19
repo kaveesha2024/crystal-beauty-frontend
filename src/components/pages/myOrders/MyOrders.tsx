@@ -9,7 +9,6 @@ const MyOrders: React.FC = () => {
     const { userId } = useSelector((state: RootState) => state.authentication);
     const [isLoading, setIsLoading] = useState(true);
     const [allOrders, setAllOrders] = useState<IAllOrdersTypes[]>([]);
-    console.log(allOrders);
     useEffect(() => {
         if (isLoading) {
             getOrders();

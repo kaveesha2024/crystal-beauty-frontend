@@ -45,9 +45,9 @@ const MyOrdersSection: React.FC<MyOrdersSectionPropTypes> = ({ allOrders }) => {
                             </button>
                         </div>
                     ) : (
-                        allOrders.map((order: IAllOrdersTypes) => (
+                        allOrders.map((order: IAllOrdersTypes, index: number) => (
                             <div
-                                key={order.orderId}
+                                key={index}
                                 className="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition duration-200 hover:shadow-md"
                             >
                                 <div className="p-5 sm:p-6">
@@ -133,7 +133,7 @@ const MyOrdersSection: React.FC<MyOrdersSectionPropTypes> = ({ allOrders }) => {
                                             <div className="text-right">
                                                 <p className="text-sm text-gray-500">Total</p>
                                                 <p className="text-xl font-bold text-[#D50B8B]">
-                                                    Rs. {order.totalPrice.toLocaleString()}/=
+                                                    Rs. {order.totalPrice?.toLocaleString()}/=
                                                 </p>
                                             </div>
                                         </div>
