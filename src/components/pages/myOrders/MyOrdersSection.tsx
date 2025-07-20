@@ -38,9 +38,12 @@ const MyOrdersSection: React.FC<MyOrdersSectionPropTypes> = ({ allOrders }) => {
                     {allOrders.length === 0 ? (
                         <div className="py-12 text-center">
                             <p className="text-lg text-gray-500">
-                                You haven't placed any orders yet.
+                                You haven't placed any order yet.
                             </p>
-                            <button className="mt-4 rounded-full bg-[#D50B8B] px-6 py-2 font-medium text-white transition duration-200 hover:bg-[#C40A7D]">
+                            <button
+                                onClick={() => navigate("/products")}
+                                className="mt-4 rounded-full bg-[#D50B8B] px-6 py-2 font-medium text-white transition duration-200 hover:bg-[#C40A7D]"
+                            >
                                 Shop Now
                             </button>
                         </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 const AllProductsHeroSection: React.FC = () => {
     return (
-        <div className="relative h-[95vh] min-h-[600px] w-full overflow-hidden">
+        <div className="relative h-[100vh] min-h-[100vh] w-full overflow-hidden">
             <div className="absolute inset-0 z-0">
                 <div className="h-full w-full bg-[url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')] bg-cover bg-center">
                     <div className="absolute inset-0 bg-gradient-to-r from-[#1e1e19]/90 to-[#D50B8B]/70" />

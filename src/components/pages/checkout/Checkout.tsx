@@ -69,7 +69,7 @@ const Checkout: React.FC = () => {
                             timer: 1500,
                         });
                         dispatch(clearCart());
-                        navigate("/products");
+                        navigate("/my_orders");
                     }
                 } catch (err) {
                     toast.dismiss(toastId);

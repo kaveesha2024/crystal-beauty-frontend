@@ -36,6 +36,7 @@ axios.interceptors.request.use(
 );
 const AppRoutes: React.FC = () => {
     const { role, isAuthenticated } = useSelector((state: RootState) => state.authentication);
+    window.scrollTo(0, 0);
     return (
         <div className="w-full max-w-full">
             <Toaster />
