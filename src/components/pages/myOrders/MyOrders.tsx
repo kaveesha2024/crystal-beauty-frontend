@@ -3,7 +3,6 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../../store.ts";
 import type { IAllOrdersTypes } from "../../../utility/types/order/order";
-import toast from "react-hot-toast";
 import MyOrdersSection from "./MyOrdersSection.tsx";
 const MyOrders: React.FC = () => {
     const { userId } = useSelector((state: RootState) => state.authentication);
@@ -23,7 +22,6 @@ const MyOrders: React.FC = () => {
                 setAllOrders(response.data.message);
                 return;
             }
-            toast.error(response.data.message);
         } catch (e) {
             console.log(e);
         }

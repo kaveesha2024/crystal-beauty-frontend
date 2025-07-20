@@ -35,7 +35,7 @@ const ProductOverView: React.FC<IProductOverViewPropsTypes> = ({ product }) => {
         });
     };
     return (
-        <div className="mb-5 flex w-full flex-col items-center justify-center gap-5 bg-red-500 px-4 py-5 md:flex-row md:px-20 md:py-10">
+        <div className="mb-5 flex w-full flex-col items-center justify-center gap-5 px-4 py-5 md:flex-row md:px-20 md:py-10">
             {/* Image Gallery Section */}
             <div className="relative w-full bg-white pt-5 md:w-[50%]">
                 <div className="absolute top-5 right-5">
