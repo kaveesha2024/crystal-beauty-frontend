@@ -23,11 +23,6 @@ export const formFields = [
         type: "text",
     },
     {
-        label: "Email",
-        name: "email",
-        type: "email",
-    },
-    {
         label: "Home Address",
         name: "address",
         type: "text",
