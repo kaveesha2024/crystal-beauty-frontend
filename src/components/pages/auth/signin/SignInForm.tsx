@@ -10,7 +10,7 @@ interface SignInFormProps {
 const SignInForm: React.FC<SignInFormProps> = ({ handleSignInInput, handleSignInSubmit }) => {
     const [showPassword, setShowPassword] = useState(false);
     return (
-        <div className="flex min-h-screen w-full items-center justify-center bg-[#FFEDFA] px-4 py-12">
+        <div className="bg-primary flex w-full items-center justify-center px-4 py-12">
             <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg">
                 <div className="mb-8 text-center">
                     <h1 className="mb-2 text-2xl font-bold text-[#1e1e19]">Login</h1>
