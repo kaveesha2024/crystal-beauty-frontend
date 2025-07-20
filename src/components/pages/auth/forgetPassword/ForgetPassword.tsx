@@ -4,7 +4,7 @@ import CheckEmailAlreadySignUpApi from "./CheckEmailAlreadySignUpApi.ts";
 
 const ForgetPassword: React.FC = () => {
     const [email, setEmail] = useState<string>("");
-    const [isOtpSend, setIsOtpSend] = useState<boolean>(true);
+    const [isOtpSend, setIsOtpSend] = useState<boolean>(false);
     const handleEmailField = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setEmail(event.target.value);
     };
@@ -15,7 +15,6 @@ const ForgetPassword: React.FC = () => {
         const response = await CheckEmailAlreadySignUpApi(email);
         if (response !== null) {
             setIsOtpSend(true);
-            console.log("work");
             return;
         }
     };
