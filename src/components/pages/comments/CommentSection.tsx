@@ -2,72 +2,33 @@ import React from "react";
 import { X } from "lucide-react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../../store.ts";
-import type { ICommentSectionPropTypes } from "../../../utility/types/comments/comment";
-
-// Dummy data for comments
-const dummyComments = [
-    {
-        id: 1,
-        firstName: "Sarah",
-        lastName: "Johnson",
-        profilePic: "https://randomuser.me/api/portraits/women/44.jpg",
-        comment: "This lipstick is amazing! The color lasts all day without drying my lips.",
-        date: "2023-05-15",
-    },
-    {
-        id: 2,
-        firstName: "Michael",
-        lastName: "Chen",
-        profilePic: "https://randomuser.me/api/portraits/men/32.jpg",
-        comment: "I bought this for my wife and she absolutely loves it. Great quality!",
-        date: "2023-05-18",
-    },
-    {
-        id: 3,
-        firstName: "Emily",
-        lastName: "Rodriguez",
-        profilePic: "https://randomuser.me/api/portraits/women/68.jpg",
-        comment: "The foundation matches my skin tone perfectly. Highly recommend!",
-        date: "2023-05-20",
-    },
-    {
-        id: 4,
-        firstName: "David",
-        lastName: "Kim",
-        profilePic: "https://randomuser.me/api/portraits/men/75.jpg",
-        comment: "The eyeshadow palette has such vibrant colors. Worth every penny!",
-        date: "2023-05-22",
-    },
-];
-
+import type {
+    IAllCommentsType,
+    ICommentSectionPropTypes,
+} from "../../../utility/types/comments/comment";
 const CommentSection: React.FC<ICommentSectionPropTypes> = ({
     handleCommentInputField,
     handleUploadComment,
+    allComments,
 }) => {
     const { isAuthenticated } = useSelector((state: RootState) => state.authentication);
-    const [comments, setComments] = React.useState(dummyComments);
-
-    // Function to handle comment deletion
-    const handleDeleteComment = (commentId: number) => {
-        setComments(comments.filter(comment => comment.id !== commentId));
-    };
     return (
         <div className="mx-auto max-w-2xl p-6">
             <h2 className={`text-accent mb-6 text-2xl font-bold`}>Customer Reviews</h2>
 
             <div className="space-y-6">
-                {comments.length <= 0 ? (
+                {allComments.length <= 0 ? (
                     <div className="select-none` font-bold tracking-widest">No Reviews yet</div>
                 ) : (
-                    comments.map(comment => (
+                    allComments.map((comment: IAllCommentsType, index: number) => (
                         <div
-                            key={comment.id}
+                            key={index}
                             className="flex gap-4 rounded-lg p-4 shadow-md transition-shadow hover:shadow-lg"
                         >
                             {/* User Avatar */}
                             <div className="flex-shrink-0">
                                 <img
-                                    src={comment.profilePic}
+                                    src={comment.profilePicture}
                                     alt={`${comment.firstName} ${comment.lastName}`}
                                     className="h-12 w-12 rounded-full border-2 border-white object-cover shadow-sm"
                                 />
@@ -81,13 +42,13 @@ const CommentSection: React.FC<ICommentSectionPropTypes> = ({
                                             {comment.firstName} {comment.lastName}
                                         </h4>
                                         <span className="text-xs text-gray-500">
-                                            {new Date(comment.date).toLocaleDateString()}
+                                            {new Date(comment.createdAt).toLocaleDateString()}
                                         </span>
                                     </div>
 
                                     {/* Delete Button */}
                                     <button
-                                        onClick={() => handleDeleteComment(comment.id)}
+                                        // onClick={() => handleDeleteComment(comment.productId)}
                                         className={`text-accent hover:text-accent cursor-pointer transition-colors`}
                                         aria-label="Delete comment"
                                     >

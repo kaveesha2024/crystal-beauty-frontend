@@ -10,6 +10,7 @@ const ForgetPassword: React.FC = () => {
     const navigate: NavigateFunction = useNavigate();
     const [email, setEmail] = useState<string>("");
     const [isOtpSend, setIsOtpSend] = useState<boolean>(false);
+    const [message, setMessage] = useState<string>("Please verify your email address first");
     const [forgetPasswordInputDetails, setForgetPasswordInputDetails] =
         useState<IForgetPasswordInputDetailsTypes>({
             otp: "",
@@ -41,6 +42,7 @@ const ForgetPassword: React.FC = () => {
         const response = await CheckEmailAlreadySignUpApi(email);
         Swal.close();
         if (response !== null) {
+            setMessage(response);
             setIsOtpSend(true);
             return;
         }
@@ -54,6 +56,7 @@ const ForgetPassword: React.FC = () => {
             handleForgetPasswordInputDetails={handleForgetPasswordInputDetails}
             isForgetPasswordInputDetailsNull={isForgetPasswordInputDetailsNull}
             resetPassword={resetPassword}
+            message={message}
         />
     );
 };

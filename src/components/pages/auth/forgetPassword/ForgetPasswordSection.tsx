@@ -10,6 +10,7 @@ const ForgetPasswordSection: React.FC<IForgetPasswordSection> = ({
     handleForgetPasswordInputDetails,
     isForgetPasswordInputDetailsNull,
     resetPassword,
+    message,
 }) => {
     const navigate: NavigateFunction = useNavigate();
     return (
@@ -19,7 +20,7 @@ const ForgetPasswordSection: React.FC<IForgetPasswordSection> = ({
                     <img className="h-[200px] w-[200px]" src="/forget-password.svg" alt="" />
                     <h1 className="mt-5 text-2xl font-extrabold tracking-widest">Reset Password</h1>
                     <p className="text-secondary/50 text-center font-thin tracking-wider">
-                        Please verify your email address first
+                        {message}
                     </p>
                 </div>
                 <div>

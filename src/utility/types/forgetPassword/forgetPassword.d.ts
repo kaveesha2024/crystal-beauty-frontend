@@ -12,4 +12,5 @@ export interface IForgetPasswordSection {
     handleForgetPasswordInputDetails: (event: React.ChangeEvent<HTMLInputElement>) => void;
     isForgetPasswordInputDetailsNull: () => boolean;
     resetPassword: () => void;
+    message: string;
 }
