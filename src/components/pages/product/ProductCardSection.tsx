@@ -15,6 +15,7 @@ const ProductCardSection: React.FC = () => {
             setIsLoading(false);
         }
     }, [isLoading]);
+    window.scrollTo(0, 0);
     const getProducts = async (): Promise<void> => {
         try {
             const response = await axios.get("/api/get_all_products");

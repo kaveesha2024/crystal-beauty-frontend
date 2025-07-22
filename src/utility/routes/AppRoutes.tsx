@@ -18,6 +18,8 @@ import Cart from "../../components/pages/cart/Cart.tsx";
 import Checkout from "../../components/pages/checkout/Checkout.tsx";
 import AboutUs from "../../components/pages/aboutUs/AboutUs.tsx";
 import ContactUs from "../../components/pages/contactUs/ContactUs.tsx";
+import MyOrders from "../../components/pages/myOrders/MyOrders.tsx";
+import ForgetPassword from "../../components/pages/auth/forgetPassword/ForgetPassword.tsx";
 
 axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}:${import.meta.env.VITE_API_PORT}`;
 axios.interceptors.request.use(
@@ -35,6 +37,7 @@ axios.interceptors.request.use(
 );
 const AppRoutes: React.FC = () => {
     const { role, isAuthenticated } = useSelector((state: RootState) => state.authentication);
+    window.scrollTo(0, 0);
     return (
         <div className="w-full max-w-full">
             <Toaster />
@@ -72,6 +75,8 @@ const AppRoutes: React.FC = () => {
                     path="/checkout"
                     element={isAuthenticated ? <Checkout /> : <Navigate to="/signin" />}
                 />
+                <Route path="/forget_password" element={<ForgetPassword />} />
+                <Route path="/my_orders" element={<MyOrders />} />
             </Routes>
             <Footer />
         </div>

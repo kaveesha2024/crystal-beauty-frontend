@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import type { ICurrentUserInformationTypes } from "./ManageProfile.tsx";
 import { formFields, inputClassName } from "../../../utility/others/refactor.ts";
 import type { IManageProfileFormPropsTypes } from "../../../utility/types/manageProfile/manageProfile";
+import type { ICurrentUserInformationTypes } from "../../../utility/types/profile/profile";
 const ManageProfileForm: React.FC<IManageProfileFormPropsTypes> = ({
     currentUserDetails,
     handleManageProfileSubmit,

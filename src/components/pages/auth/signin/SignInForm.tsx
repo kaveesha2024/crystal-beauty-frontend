@@ -2,15 +2,13 @@ import { EyeIcon, EyeOffIcon, LockIcon, MailIcon } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import GoogleSignUp from "../google/GoogleSignUp.tsx";
+import type { SignInFormProps } from "../../../../utility/types/signIn/signIn";
 
-interface SignInFormProps {
-    handleSignInInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    handleSignInSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-}
 const SignInForm: React.FC<SignInFormProps> = ({ handleSignInInput, handleSignInSubmit }) => {
     const [showPassword, setShowPassword] = useState(false);
+    window.scrollTo(0, 0);
     return (
-        <div className="flex min-h-screen w-full items-center justify-center bg-[#FFEDFA] px-4 py-12">
+        <div className="bg-primary flex w-full items-center justify-center px-4 py-12">
             <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg">
                 <div className="mb-8 text-center">
                     <h1 className="mb-2 text-2xl font-bold text-[#1e1e19]">Login</h1>
@@ -68,6 +66,12 @@ const SignInForm: React.FC<SignInFormProps> = ({ handleSignInInput, handleSignIn
                             </button>
                         </div>
                     </div>
+                    <Link
+                        className="text-accent block text-end text-sm font-bold underline-offset-2 hover:underline"
+                        to={"/forget_password"}
+                    >
+                        Forget Password ?
+                    </Link>
                     <button
                         type="submit"
                         className="w-full cursor-pointer rounded-md bg-[#D50B8B] px-4 py-2 text-white transition-colors hover:bg-[#D50B8B]/90 focus:ring-2 focus:ring-[#D50B8B] focus:ring-offset-2 focus:outline-none"

@@ -23,11 +23,6 @@ export const formFields = [
         type: "text",
     },
     {
-        label: "Email",
-        name: "email",
-        type: "email",
-    },
-    {
         label: "Home Address",
         name: "address",
         type: "text",
@@ -76,4 +71,29 @@ export const statusRing = {
     returned: "border-red-400 shadow-red-100",
     delivered: "border-green-400 shadow-green-100",
     cancelled: "border-red-400 shadow-red-100",
+};
+export const statusColor = (status: string): string => {
+    if (status === "pending") {
+        return "bg-yellow-100 text-yellow-800";
+    }
+    if (status === "delivered") {
+        return "bg-green-100 text-green-800";
+    }
+    if (status === "cancelled") {
+        return "bg-red-100 text-red-800";
+    }
+    if (status === "returned") {
+        return "bg-purple-100 text-purple-800";
+    }
+    return "bg-blue-100 text-blue-800";
+};
+
+export const paymentIcon = (method: string): "💵" | "💳" | "🔵" => {
+    if (method === "cashOnDelivery") {
+        return "💵";
+    }
+    if (method === "creditCard") {
+        return "💳";
+    }
+    return "🔵";
 };

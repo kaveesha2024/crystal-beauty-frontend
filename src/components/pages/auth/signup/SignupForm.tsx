@@ -7,21 +7,21 @@ import {
     EyeIcon,
     EyeOffIcon,
     NavigationIcon,
+    SendHorizontal,
+    KeyRound,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import GoogleSignUp from "../google/GoogleSignUp.tsx";
-export interface SignupFormProps {
-    handleSignupInputFields: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-}
+import type { SignupFormProps } from "../../../../utility/types/signup/signup";
 export const SignupForm: React.FC<SignupFormProps> = ({
     handleSignupInputFields,
     handleSubmit,
+    handleSendOtp,
 }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     return (
-        <div className="flex min-h-screen w-full items-center justify-center bg-[#FFEDFA] px-4 py-12">
+        <div className="bg-primary flex min-h-screen w-full items-center justify-center px-4 py-12">
             <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg">
                 <div className="mb-8 text-center">
                     <h1 className="mb-2 text-2xl font-bold text-[#1e1e19]">Create Account</h1>
@@ -68,26 +68,6 @@ export const SignupForm: React.FC<SignupFormProps> = ({
                                 />
                                 <UserIcon className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400" />
                             </div>
-                        </div>
-                    </div>
-                    <div>
-                        <label
-                            className="mb-1 block text-sm font-medium text-[#1e1e19]"
-                            htmlFor="email"
-                        >
-                            Email Address
-                        </label>
-                        <div className="relative">
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                onChange={handleSignupInputFields}
-                                className="w-full rounded-md border border-gray-200 py-2 pr-4 pl-10 focus:border-transparent focus:ring-2 focus:ring-[#D50B8B] focus:outline-none"
-                                placeholder="you@example.com"
-                                required
-                            />
-                            <MailIcon className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400" />
                         </div>
                     </div>
                     <div>
@@ -199,7 +179,56 @@ export const SignupForm: React.FC<SignupFormProps> = ({
                             <NavigationIcon className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400" />
                         </div>
                     </div>
-
+                    <div>
+                        <label
+                            className="mb-1 block text-sm font-medium text-[#1e1e19]"
+                            htmlFor="email"
+                        >
+                            Email Address
+                        </label>
+                        <div className="relative w-full rounded-md border border-gray-200 py-2 pr-4 pl-10 focus:border-transparent focus:ring-2 focus:ring-[#D50B8B] focus:outline-none">
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                onChange={handleSignupInputFields}
+                                className="w-[93%] rounded-md outline-none"
+                                placeholder="you@example.com"
+                                required
+                            />
+                            <MailIcon className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400" />
+                            <button
+                                className="absolute right-2 cursor-pointer transition duration-200 hover:scale-105"
+                                type={"button"}
+                                onClick={handleSendOtp}
+                            >
+                                <SendHorizontal className="text-green-400" />
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label
+                            className="mb-1 block text-sm font-medium text-[#1e1e19]"
+                            htmlFor="email"
+                        >
+                            OTP
+                        </label>
+                        <p className="my-4 text-xs text-red-500">
+                            The OTP is valid for only 5 Minutes
+                        </p>
+                        <div className="relative">
+                            <input
+                                type="text"
+                                id="otp"
+                                name="otp"
+                                onChange={handleSignupInputFields}
+                                className="w-full rounded-md border border-gray-200 py-2 pr-4 pl-10 focus:border-transparent focus:ring-2 focus:ring-[#D50B8B] focus:outline-none"
+                                placeholder="******"
+                                required
+                            />
+                            <KeyRound className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400" />
+                        </div>
+                    </div>
                     <button
                         type="submit"
                         className="w-full cursor-pointer rounded-md bg-[#D50B8B] px-4 py-2 text-white transition-colors hover:bg-[#D50B8B]/90 focus:ring-2 focus:ring-[#D50B8B] focus:ring-offset-2 focus:outline-none"

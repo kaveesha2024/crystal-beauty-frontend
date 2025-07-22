@@ -16,7 +16,8 @@ const GoogleSignUp: React.FC = () => {
         <div>
             <button
                 onClick={() => loginWithGoogle()}
-                className="hover:bg-accent/30 mt-2 flex w-full cursor-pointer items-center justify-center gap-2 rounded-md py-2"
+                className="hover:bg-accent/30 mt-2 flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-md py-2"
+                disabled={true}
             >
                 <FcGoogle className="text-xl" /> Login with Google
             </button>
