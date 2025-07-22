@@ -25,7 +25,7 @@ const OrderTable: React.FC<IOrderTablePropTypes> = ({ allOrders, handleOrderPopu
                                 <td className="px-6 py-4">{order.customerName}</td>
                                 <td className="px-6 py-4">{order.products.length}</td>
                                 <td className="px-6 py-4">
-                                    Rs. {order.totalPrice.toLocaleString()}
+                                    Rs. {order.totalPrice?.toLocaleString()}
                                 </td>
                                 <td className="px-6 py-4">
                                     <span>
