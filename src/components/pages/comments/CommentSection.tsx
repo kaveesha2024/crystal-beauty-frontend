@@ -10,8 +10,9 @@ const CommentSection: React.FC<ICommentSectionPropTypes> = ({
     handleCommentInputField,
     handleUploadComment,
     allComments,
+    deleteComment,
 }) => {
-    const { isAuthenticated } = useSelector((state: RootState) => state.authentication);
+    const { isAuthenticated, userId } = useSelector((state: RootState) => state.authentication);
     return (
         <div className="mx-auto max-w-2xl p-6">
             <h2 className={`text-accent mb-6 text-2xl font-bold`}>Customer Reviews</h2>
@@ -47,13 +48,15 @@ const CommentSection: React.FC<ICommentSectionPropTypes> = ({
                                     </div>
 
                                     {/* Delete Button */}
-                                    <button
-                                        // onClick={() => handleDeleteComment(comment.productId)}
-                                        className={`text-accent hover:text-accent cursor-pointer transition-colors`}
-                                        aria-label="Delete comment"
-                                    >
-                                        <X size={18} />
-                                    </button>
+                                    {userId === comment.userId && (
+                                        <button
+                                            onClick={(): void => deleteComment(comment._id)}
+                                            className={`text-accent hover:text-accent cursor-pointer transition-colors`}
+                                            aria-label="Delete comment"
+                                        >
+                                            <X size={18} />
+                                        </button>
+                                    )}
                                 </div>
                                 <p className="mt-2 text-gray-700">{comment.comment}</p>
                             </div>

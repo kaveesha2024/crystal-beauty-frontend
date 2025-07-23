@@ -4,6 +4,7 @@ export interface ICommentSectionPropTypes {
     handleCommentInputField: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
     handleUploadComment: () => void;
     allComments: IAllCommentsType[];
+    deleteComment: (index: string) => void;
 }
 export interface IAllCommentsType {
     comment: string;
